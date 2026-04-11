@@ -7,6 +7,7 @@
 
 [node name="CharacterBody2D" parent="." unique_id=881065301 instance=ExtResource("1_0xm2m")]
 z_index = 2
+position = Vector2(1, -2)
 
 [node name="StaticBody2D" parent="." unique_id=276613645 instance=ExtResource("2_h2yge")]
 position = Vector2(1, 97)
