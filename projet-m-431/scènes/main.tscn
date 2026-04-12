@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b2qpwxudwxjx7"]
+
+[ext_resource type="Script" uid="uid://ddxco26nq5pxr" path="res://script/main.gd" id="1_ryvcx"]
+[ext_resource type="PackedScene" uid="uid://bs38xw2cxwn2l" path="res://scènes/character.tscn" id="2_0fmxh"]
+[ext_resource type="PackedScene" uid="uid://4hoiq0f5flui" path="res://scènes/niveau1.tscn" id="3_m0jxt"]
+
+[node name="main" type="Node2D" unique_id=73795867]
+script = ExtResource("1_ryvcx")
+
+[node name="CharacterBody2D" parent="." unique_id=881065301 instance=ExtResource("2_0fmxh")]
+z_index = 2
+position = Vector2(80, -80)
+
+[node name="StaticBody2D" parent="." unique_id=276613645 instance=ExtResource("3_m0jxt")]
+
+[connection signal="change_level" from="StaticBody2D" to="." method="_on_static_body_2d_change_level"]

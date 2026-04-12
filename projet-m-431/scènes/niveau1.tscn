@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://4hoiq0f5flui"]
 
 [ext_resource type="Texture2D" uid="uid://chtg755at0xfq" path="res://assets/Texture/TX Tileset Ground.png" id="1_mi635"]
+[ext_resource type="PackedScene" uid="uid://bup27byul70vo" path="res://scènes/porte.tscn" id="1_midqc"]
+[ext_resource type="Script" uid="uid://c3mjs53src2jg" path="res://script/niveau_1.gd" id="1_uywag"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s8bxr"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rbhar"]
 texture = ExtResource("1_mi635")
 0:0/0 = 0
 1:0/0 = 0
@@ -670,7 +672,7 @@ texture = ExtResource("1_mi635")
 21:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_c1gtx"]
-sources/0 = SubResource("TileSetAtlasSource_s8bxr")
+sources/0 = SubResource("TileSetAtlasSource_rbhar")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ry5bi"]
 size = Vector2(320, 32)
@@ -688,6 +690,10 @@ size = Vector2(64, 32)
 size = Vector2(32, 64)
 
 [node name="StaticBody2D" type="StaticBody2D" unique_id=276613645]
+script = ExtResource("1_uywag")
+
+[node name="Area2D" parent="." unique_id=1629297423 instance=ExtResource("1_midqc")]
+position = Vector2(1678, -656)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1611297271]
 tile_set = SubResource("TileSet_c1gtx")
@@ -765,3 +771,6 @@ shape = SubResource("RectangleShape2D_c1gtx")
 [node name="CollisionShape1x2-4" type="CollisionShape2D" parent="." unique_id=359682225]
 position = Vector2(1040, -288)
 shape = SubResource("RectangleShape2D_c1gtx")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
