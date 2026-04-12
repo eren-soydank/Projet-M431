@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://4hoiq0f5flui"]
 
-[ext_resource type="Texture2D" uid="uid://chtg755at0xfq" path="res://assets/Texture/TX Tileset Ground.png" id="1_mi635"]
+[ext_resource type="Texture2D" uid="uid://chtg755at0xfq" path="res://assets/Texture/TX Tileset Ground.png" id="1_g30or"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s8bxr"]
-texture = ExtResource("1_mi635")
+texture = ExtResource("1_g30or")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
