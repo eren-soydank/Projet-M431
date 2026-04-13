@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba67xm7m2p6ng"
-path="res://.godot/imported/porte.png-7bc7282e88a16658a29cfaa515dd5465.ctex"
+uid="uid://bup4fwfcf0ct3"
+path="res://.godot/imported/porte_ferme.png-051a7ac4f7eccaec7e41ae44f47202ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/porte.png"
-dest_files=["res://.godot/imported/porte.png-7bc7282e88a16658a29cfaa515dd5465.ctex"]
+source_file="res://assets/porte/porte_ferme.png"
+dest_files=["res://.godot/imported/porte_ferme.png-051a7ac4f7eccaec7e41ae44f47202ef.ctex"]
 
 [params]
 

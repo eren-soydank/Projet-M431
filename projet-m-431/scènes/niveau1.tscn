@@ -693,7 +693,7 @@ size = Vector2(32, 64)
 script = ExtResource("1_uywag")
 
 [node name="Area2D" parent="." unique_id=1629297423 instance=ExtResource("1_midqc")]
-position = Vector2(1678, -656)
+position = Vector2(1703, -672)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1611297271]
 tile_set = SubResource("TileSet_c1gtx")
