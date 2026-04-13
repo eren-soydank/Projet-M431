@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba67xm7m2p6ng"
-path="res://.godot/imported/Design sans titre.png-c5955939abe3787436d8c9237775408e.ctex"
+uid="uid://dl382yvo6gkpa"
+path="res://.godot/imported/animation.png-64c00a8a666467cad0f33f8679cb6fcd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Design sans titre.png"
-dest_files=["res://.godot/imported/Design sans titre.png-c5955939abe3787436d8c9237775408e.ctex"]
+source_file="res://assets/coeur/animation.png"
+dest_files=["res://.godot/imported/animation.png-64c00a8a666467cad0f33f8679cb6fcd.ctex"]
 
 [params]
 

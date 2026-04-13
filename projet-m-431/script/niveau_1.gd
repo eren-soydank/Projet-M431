@@ -5,15 +5,18 @@ var is_player_in = false
 # initialiser le signal qui envoi a la fonction dans main
 signal change_level
 
+@onready var porte = $Area2D/AnimatedSprite2D
+
 # fonction qui c'exécute une fois au debut
 func _ready() -> void:
-	pass
+	porte.play("idle")
 
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	# si le joueur est dans la porte et qu'il appui sur w
 	if is_player_in and Input.is_action_just_pressed("interact"):
+		
 		# envoi un signale a main pour changer de niveau
 		emit_signal("change_level")
 
