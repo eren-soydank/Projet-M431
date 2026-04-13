@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c6nanwyv34o1u" path="res://assets/Colour1/NoOutline/120x80_PNGSheets/_Idle.png" id="2_0qfo5"]
 [ext_resource type="Texture2D" uid="uid://ctilrl154yx63" path="res://assets/Colour1/NoOutline/120x80_PNGSheets/_SlideFull.png" id="2_wfnr8"]
 [ext_resource type="Texture2D" uid="uid://cu220v5ucjvko" path="res://assets/Colour1/NoOutline/120x80_PNGSheets/_Run.png" id="3_px5sl"]
+[ext_resource type="PackedScene" uid="uid://pl8gwmt4yh1w" path="res://scènes/HUD.tscn" id="6_aaoi4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5wlx"]
 atlas = ExtResource("2_0qfo5")
@@ -237,3 +238,6 @@ shape = SubResource("CapsuleShape2D_px5sl")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=768723707]
 position = Vector2(18, 57)
+
+[node name="Node2D" parent="." unique_id=1047693899 instance=ExtResource("6_aaoi4")]
+position = Vector2(17, 57)

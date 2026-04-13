@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://yp1ir8ncaynk"]
+
+[ext_resource type="Texture2D" uid="uid://bnqxd0esymwxv" path="res://assets/ver/ver.png" id="1_tlqsc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkrdp"]
+atlas = ExtResource("1_tlqsc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05014"]
+atlas = ExtResource("1_tlqsc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5byd"]
+atlas = ExtResource("1_tlqsc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21c2i"]
+atlas = ExtResource("1_tlqsc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6ynb"]
+atlas = ExtResource("1_tlqsc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhheq"]
+atlas = ExtResource("1_tlqsc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rlq4"]
+atlas = ExtResource("1_tlqsc")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s3co"]
+atlas = ExtResource("1_tlqsc")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dbbrx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkrdp")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_05014")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_r5byd")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_21c2i")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_u6ynb")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_bhheq")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8rlq4")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_8s3co")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D" unique_id=829987666]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=531996971]
+sprite_frames = SubResource("SpriteFrames_dbbrx")
+animation = &"idle"
+frame_progress = 0.75075173
