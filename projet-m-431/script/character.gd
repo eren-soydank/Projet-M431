@@ -4,12 +4,18 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -430.0
 const SLIDE_SPEED = 600.0
 const SLIDE_DURATION = 0.4
+const START_POSITION = Vector2(94.0, -76.0)
 
 @onready var sprite = $AnimatedSprite2D
 
 var is_sliding = false
 var slide_direction = 0
 var slide_timer = 0.0
+var nombre_potion = 0
+var vie = 10
+
+signal utilise_potion
+signal mort
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -58,3 +64,19 @@ func _physics_process(delta: float) -> void:
 	else:
 		if sprite.animation != "idle":
 			sprite.play("idle")
+	
+	if Input.is_action_just_pressed("regen") and nombre_potion > 0 and vie < 10:
+		vie += 1
+		nombre_potion -= 1
+		emit_signal("utilise_potion")
+
+func prendre_dega(nombre):
+	vie -= nombre
+	if vie <= 0:
+		vie = 0
+		mourir()
+	
+func mourir():
+	vie = 10
+	nombre_potion = 0
+	emit_signal("mort")

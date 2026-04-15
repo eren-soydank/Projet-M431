@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bo1hsmhfet1xp"]
 
 [ext_resource type="Texture2D" uid="uid://dl382yvo6gkpa" path="res://assets/coeur/animation.png" id="1_w0qvi"]
-[ext_resource type="Texture2D" uid="uid://c3kt65ryln56v" path="res://assets/coeur/empty.png" id="2_rvv8o"]
-[ext_resource type="Texture2D" uid="uid://dsnhtca51uuyn" path="res://assets/coeur/idle.png" id="3_ug6yj"]
+[ext_resource type="Texture2D" uid="uid://c3kt65ryln56v" path="res://assets/coeur/Sprite-0007.png" id="2_rvv8o"]
+[ext_resource type="Texture2D" uid="uid://dsnhtca51uuyn" path="res://assets/coeur/Sprite-0006.png" id="3_ug6yj"]
+[ext_resource type="Script" uid="uid://b4lkyq10qhlk4" path="res://script/coeur.gd" id="4_w0qvi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vihpw"]
 atlas = ExtResource("1_w0qvi")
@@ -99,4 +100,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=1512977040]
 sprite_frames = SubResource("SpriteFrames_qawtk")
-animation = &"appear"
+animation = &"disipar"
+script = ExtResource("4_w0qvi")
