@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bup27byul70vo"]
 
 [ext_resource type="Texture2D" uid="uid://bup4fwfcf0ct3" path="res://assets/porte/porte_ferme.png" id="1_1i6g8"]
+[ext_resource type="Script" uid="uid://b22kxd18up8d4" path="res://script/porte.gd" id="1_wilqp"]
 [ext_resource type="Texture2D" uid="uid://bkf1xau0isdxe" path="res://assets/porte/porte.png" id="2_wf7ef"]
 [ext_resource type="Texture2D" uid="uid://cvt4h0ad0tfcv" path="res://assets/porte/animation_ferm_porte.png" id="2_wilqp"]
 
@@ -88,6 +89,7 @@ animations = [{
 size = Vector2(96, 128)
 
 [node name="Area2D" type="Area2D" unique_id=1629297423]
+script = ExtResource("1_wilqp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2012466298]
 position = Vector2(-7, -16)

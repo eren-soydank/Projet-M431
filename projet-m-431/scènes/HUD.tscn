@@ -2,10 +2,80 @@
 
 [ext_resource type="Script" uid="uid://b3mb6tcaf8bgq" path="res://script/hud.gd" id="1_863tq"]
 [ext_resource type="PackedScene" uid="uid://bo1hsmhfet1xp" path="res://scènes/coeur.tscn" id="1_u7wj8"]
-[ext_resource type="PackedScene" uid="uid://yp1ir8ncaynk" path="res://scènes/ver.tscn" id="3_wa3bo"]
+[ext_resource type="Texture2D" uid="uid://d37oj4b7xehiu" path="res://assets/ver/ver.png" id="2_wa3bo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f8ua"]
+atlas = ExtResource("2_wa3bo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipve7"]
+atlas = ExtResource("2_wa3bo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dr2a"]
+atlas = ExtResource("2_wa3bo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g7gp"]
+atlas = ExtResource("2_wa3bo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plrqd"]
+atlas = ExtResource("2_wa3bo")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ffh8"]
+atlas = ExtResource("2_wa3bo")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6vfb"]
+atlas = ExtResource("2_wa3bo")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpq2w"]
+atlas = ExtResource("2_wa3bo")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gl1yg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f8ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipve7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dr2a")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_1g7gp")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_plrqd")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_0ffh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6vfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpq2w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="Node2D" type="Node2D" unique_id=1047693899]
 script = ExtResource("1_863tq")
+
+[node name="ver" type="AnimatedSprite2D" parent="." unique_id=186318211]
+position = Vector2(-529, -249)
+sprite_frames = SubResource("SpriteFrames_gl1yg")
+animation = &"idle"
+frame_progress = 0.0375851
 
 [node name="coeur1" parent="." unique_id=1512977040 instance=ExtResource("1_u7wj8")]
 position = Vector2(-529, -290)
@@ -46,9 +116,6 @@ animation = &"idle"
 [node name="coeur10" parent="." unique_id=138418457 instance=ExtResource("1_u7wj8")]
 position = Vector2(-223, -290)
 animation = &"idle"
-
-[node name="ver" parent="." unique_id=829987666 instance=ExtResource("3_wa3bo")]
-position = Vector2(-529, -252)
 
 [node name="Label" type="Label" parent="." unique_id=1846897295]
 offset_left = -512.0

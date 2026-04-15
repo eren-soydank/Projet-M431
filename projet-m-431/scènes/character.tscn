@@ -223,7 +223,7 @@ animations = [{
 radius = 16.0
 height = 40.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=881065301]
+[node name="player" type="CharacterBody2D" unique_id=881065301]
 script = ExtResource("1_px5sl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1578588887]
@@ -239,5 +239,5 @@ shape = SubResource("CapsuleShape2D_px5sl")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=768723707]
 position = Vector2(18, 57)
 
-[node name="Node2D" parent="." unique_id=1047693899 instance=ExtResource("6_aaoi4")]
+[node name="HUD" parent="." unique_id=1047693899 instance=ExtResource("6_aaoi4")]
 position = Vector2(17, 57)

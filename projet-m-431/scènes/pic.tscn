@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cok4e82pqxeqd"]
+
+[ext_resource type="Texture2D" uid="uid://bfu4as5aetl4y" path="res://assets/pic.png" id="1_o5r6y"]
+[ext_resource type="Script" uid="uid://385kro85ik4l" path="res://script/pic.gd" id="1_pwh2q"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_pwh2q"]
+points = PackedVector2Array(16, 16, -16, 16, 0, -16)
+
+[node name="pic" type="Area2D" unique_id=1605946225]
+position = Vector2(-1, 0)
+script = ExtResource("1_pwh2q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1354420518]
+texture = ExtResource("1_o5r6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=12352364]
+shape = SubResource("ConvexPolygonShape2D_pwh2q")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
