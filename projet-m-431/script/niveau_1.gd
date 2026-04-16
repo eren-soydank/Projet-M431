@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var contenu = {"portes_sortie" : {0 : $porte0}, "potions" : {}, "pic" : {}}
+@onready var contenu = {"portes_sortie" : {0 : $porte0}, "potions" : {}, "pic" : {}, "chest" : {}, "epe" : {}}
 
 # fonction qui c'exécute une fois au debut
 func _ready() -> void:
@@ -10,3 +10,4 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
+	
