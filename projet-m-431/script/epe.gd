@@ -1,16 +1,17 @@
 extends Area2D
 
-signal prendre_degat
-
 # l'id dois etre le meme que dans son nom (ver1 etc) 
 # et que la cle dans le dictioneaire dans du niveau
 @export var id = 0
-# le nombre de degat infliger (
-@export var degat = 1
+
+@onready var sprite = $AnimatedSprite2D
+
+signal ramasser_epe
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	# lance l'animation de tourner sur soi meme
+	sprite.play("idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,9 +19,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-# quand un objet entre dans la porte
+# quand un objet renre en colision avec lui
 func _on_body_entered(body: Node2D) -> void:
-	# si l'objet est le joueur
+	# si c'est un joueur
 	if body.name == "player":
-		# signal a main var la fonction _prendre_degat
-		emit_signal("prendre_degat", degat)
+		# envoi un signal a main var la fonction _ramasser_epe
+		emit_signal("ramasser_epe", id)
+		# ce supprime soi même
+		queue_free()

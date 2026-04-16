@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pl8gwmt4yh1w"]
 
 [ext_resource type="Script" uid="uid://b3mb6tcaf8bgq" path="res://script/hud.gd" id="1_863tq"]
-[ext_resource type="PackedScene" uid="uid://bo1hsmhfet1xp" path="res://scènes/coeur.tscn" id="1_u7wj8"]
+[ext_resource type="PackedScene" uid="uid://b4pbstbv4ysot" path="res://scènes/coeur.tscn" id="1_u7wj8"]
 [ext_resource type="Texture2D" uid="uid://d37oj4b7xehiu" path="res://assets/ver/ver.png" id="2_wa3bo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2f8ua"]
@@ -77,49 +77,39 @@ sprite_frames = SubResource("SpriteFrames_gl1yg")
 animation = &"idle"
 frame_progress = 0.0375851
 
-[node name="coeur1" parent="." unique_id=1512977040 instance=ExtResource("1_u7wj8")]
-position = Vector2(-529, -290)
-animation = &"idle"
-
-[node name="coeur2" parent="." unique_id=1753530866 instance=ExtResource("1_u7wj8")]
-position = Vector2(-495, -290)
-animation = &"idle"
-
-[node name="coeur3" parent="." unique_id=1209887290 instance=ExtResource("1_u7wj8")]
-position = Vector2(-461, -291)
-animation = &"idle"
-
-[node name="coeur4" parent="." unique_id=15362891 instance=ExtResource("1_u7wj8")]
-position = Vector2(-427, -290)
-animation = &"idle"
-
-[node name="coeur5" parent="." unique_id=1079818221 instance=ExtResource("1_u7wj8")]
-position = Vector2(-393, -290)
-animation = &"idle"
-
-[node name="coeur6" parent="." unique_id=1043451339 instance=ExtResource("1_u7wj8")]
-position = Vector2(-359, -290)
-animation = &"idle"
-
-[node name="coeur7" parent="." unique_id=951922361 instance=ExtResource("1_u7wj8")]
-position = Vector2(-325, -290)
-animation = &"idle"
-
-[node name="coeur8" parent="." unique_id=1272019684 instance=ExtResource("1_u7wj8")]
-position = Vector2(-291, -290)
-animation = &"idle"
-
-[node name="coeur9" parent="." unique_id=1137028581 instance=ExtResource("1_u7wj8")]
-position = Vector2(-257, -290)
-animation = &"idle"
-
-[node name="coeur10" parent="." unique_id=138418457 instance=ExtResource("1_u7wj8")]
-position = Vector2(-223, -290)
-animation = &"idle"
-
 [node name="Label" type="Label" parent="." unique_id=1846897295]
 offset_left = -512.0
 offset_top = -263.0
 offset_right = -472.0
 offset_bottom = -240.0
 text = "x0"
+
+[node name="coeur1" parent="." unique_id=18838649 instance=ExtResource("1_u7wj8")]
+position = Vector2(-529, -290)
+
+[node name="coeur2" parent="." unique_id=839959992 instance=ExtResource("1_u7wj8")]
+position = Vector2(-495, -290)
+
+[node name="coeur3" parent="." unique_id=1179427128 instance=ExtResource("1_u7wj8")]
+position = Vector2(-461, -291)
+
+[node name="coeur4" parent="." unique_id=1737967962 instance=ExtResource("1_u7wj8")]
+position = Vector2(-427, -290)
+
+[node name="coeur5" parent="." unique_id=820207757 instance=ExtResource("1_u7wj8")]
+position = Vector2(-393, -290)
+
+[node name="coeur6" parent="." unique_id=1550260924 instance=ExtResource("1_u7wj8")]
+position = Vector2(-359, -290)
+
+[node name="coeur7" parent="." unique_id=359693973 instance=ExtResource("1_u7wj8")]
+position = Vector2(-325, -290)
+
+[node name="coeur8" parent="." unique_id=1740988059 instance=ExtResource("1_u7wj8")]
+position = Vector2(-291, -290)
+
+[node name="coeur9" parent="." unique_id=1512977040 instance=ExtResource("1_u7wj8")]
+position = Vector2(-257, -290)
+
+[node name="coeur10" parent="." unique_id=894395650 instance=ExtResource("1_u7wj8")]
+position = Vector2(-223, -290)
