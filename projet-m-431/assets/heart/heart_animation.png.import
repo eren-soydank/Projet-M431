@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvt4h0ad0tfcv"
-path="res://.godot/imported/animation_ferm_porte.png-23f353d926ca22d4a6909ad7ab6edacb.ctex"
+uid="uid://dl382yvo6gkpa"
+path="res://.godot/imported/heart_animation.png-e6ca5c2f7d5a0be0ce9c4800fd101b9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/porte/animation_ferm_porte.png"
-dest_files=["res://.godot/imported/animation_ferm_porte.png-23f353d926ca22d4a6909ad7ab6edacb.ctex"]
+source_file="res://assets/heart/heart_animation.png"
+dest_files=["res://.godot/imported/heart_animation.png-e6ca5c2f7d5a0be0ce9c4800fd101b9a.ctex"]
 
 [params]
 

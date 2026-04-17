@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8a0nc3cm82x1"
-path="res://.godot/imported/animation_ferm_porte-export.png-7e681a7803e7765c126861c1f1b315ed.ctex"
+uid="uid://d37oj4b7xehiu"
+path="res://.godot/imported/glass_animation.png-8ece3c929e6fec6fde33bd065336ad84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/porte/animation_ferm_porte-export.png"
-dest_files=["res://.godot/imported/animation_ferm_porte-export.png-7e681a7803e7765c126861c1f1b315ed.ctex"]
+source_file="res://assets/glass/glass_animation.png"
+dest_files=["res://.godot/imported/glass_animation.png-8ece3c929e6fec6fde33bd065336ad84.ctex"]
 
 [params]
 

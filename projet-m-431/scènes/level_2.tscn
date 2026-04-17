@@ -695,13 +695,16 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 1, 65536, 0, 65537, 6
 
 [node name="glass0" parent="." unique_id=1437973341 instance=ExtResource("3_7ahcd")]
 position = Vector2(432, -48)
+number = 10
 
 [node name="door0" parent="." unique_id=1629297423 instance=ExtResource("4_7ahcd")]
-position = Vector2(113, -55)
+position = Vector2(119, -48)
+furst_animation = "closing"
 
 [node name="door1" parent="." unique_id=458783099 instance=ExtResource("4_7ahcd")]
 position = Vector2(1807, 168)
 id = 1
+level_destination = 3
 
 [node name="spike0" parent="." unique_id=1605946225 instance=ExtResource("5_j8amr")]
 position = Vector2(656, -16)
@@ -750,6 +753,7 @@ position = Vector2(1296, 16)
 
 [node name="spike15" parent="." unique_id=1948380232 instance=ExtResource("5_j8amr")]
 position = Vector2(1328, 16)
+rotation = -1.5707964
 
 [node name="spike16" parent="." unique_id=1527289562 instance=ExtResource("5_j8amr")]
 position = Vector2(1360, -208)

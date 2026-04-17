@@ -22,7 +22,6 @@ func _ready() -> void:
 		"closed":
 			sprite.play("closed")
 		"closing":
-			sprite.play("closed")
 			sprite.play("closing")
 		_:
 			sprite.play("idle")

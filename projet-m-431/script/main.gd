@@ -3,8 +3,8 @@ extends Node2D
 # le niveau actuel
 var curent_level = 1
 
-@onready var player = $player0
-@onready var hud = $player0/hud0
+@onready var player = $player
+@onready var hud = $player/hud
 # initier la variable curent_scene_level
 @onready var curent_scene_level
 
