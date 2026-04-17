@@ -1,14 +1,17 @@
 extends Area2D
 
-@export var id_epe = 0
+# l'id dois etre le meme que dans son nom (ver1 etc) 
+# et que la cle dans le dictioneaire dans du niveau
+@export var id = 0
+# le nombre de ver ressu lor de la recuperation
+@export var number = 1
 
 @onready var sprite = $AnimatedSprite2D
 
-signal ramasser_epe
+signal pick_up_glass
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node eSnters the scene tree for the first time.
 func _ready() -> void:
-	# lance l'animation de tourner sur soi meme
 	sprite.play("idle")
 
 
@@ -21,7 +24,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# si c'est un joueur
 	if body.name == "player":
-		# envoi un signal a main var la fonction _ramasser_epe
-		emit_signal("ramasser_epe", id_epe)
+		# envoi un signal a main var la fonction _pick_up_glass
+		emit_signal("pick_up_glass", id, number)
 		# ce supprime soi même
 		queue_free()

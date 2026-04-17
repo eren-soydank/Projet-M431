@@ -1,14 +1,14 @@
 extends StaticBody2D
 
-@onready var contenu = {"portes_sortie" : {}, "potions" : {0 : $ver0}, "pic" : {}, "chest" : {0 : $chest0}, "epe" : {}}
+@onready var contenu = {"exit_door" : {}, "glass" : {0 : $glass0}, "spike" : {}, "chest" : {0 : $chest0}, "sword" : {}}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# initialise tous les pic dans contenu mettre le nombre du dernier pic plus 1 et bien nommer les pic : 
-	# pic0, pic2, etc
+	# initialise tous les spike dans contenu mettre le nombre du dernier spike plus 1 et bien nommer les spike : 
+	# spike0, spike2, etc
 	for n in range(0):
-		contenu["pic"][n] = get_node("pic" + str(n))
+		contenu["spike"][n] = get_node("spike" + str(n))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

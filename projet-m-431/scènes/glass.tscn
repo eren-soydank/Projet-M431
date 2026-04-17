@@ -1,38 +1,38 @@
-[gd_scene format=3 uid="uid://yp1ir8ncaynk"]
+[gd_scene format=3 uid="uid://bjkdltgimj8nb"]
 
-[ext_resource type="Script" uid="uid://51sfu740ps1e" path="res://script/ver.gd" id="1_4gydb"]
-[ext_resource type="Texture2D" uid="uid://d37oj4b7xehiu" path="res://assets/ver/ver.png" id="1_tlqsc"]
+[ext_resource type="Script" uid="uid://51sfu740ps1e" path="res://script/glass.gd" id="1_nxabi"]
+[ext_resource type="Texture2D" uid="uid://d37oj4b7xehiu" path="res://assets/ver/ver.png" id="2_o25i1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pnjc8"]
-atlas = ExtResource("1_tlqsc")
+atlas = ExtResource("2_o25i1")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikbc1"]
-atlas = ExtResource("1_tlqsc")
+atlas = ExtResource("2_o25i1")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aebqx"]
-atlas = ExtResource("1_tlqsc")
+atlas = ExtResource("2_o25i1")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70go6"]
-atlas = ExtResource("1_tlqsc")
+atlas = ExtResource("2_o25i1")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1wckb"]
-atlas = ExtResource("1_tlqsc")
+atlas = ExtResource("2_o25i1")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rb5td"]
-atlas = ExtResource("1_tlqsc")
+atlas = ExtResource("2_o25i1")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ee082"]
-atlas = ExtResource("1_tlqsc")
+atlas = ExtResource("2_o25i1")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vik3t"]
-atlas = ExtResource("1_tlqsc")
+atlas = ExtResource("2_o25i1")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4qntf"]
@@ -70,8 +70,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pk4ll"]
 size = Vector2(32, 32)
 
-[node name="ver1" type="Area2D" unique_id=1437973341]
-script = ExtResource("1_4gydb")
+[node name="glass" type="Area2D" unique_id=1437973341]
+script = ExtResource("1_nxabi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1549266082]
 sprite_frames = SubResource("SpriteFrames_4qntf")
