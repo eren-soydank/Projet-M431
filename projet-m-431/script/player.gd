@@ -15,13 +15,13 @@ var is_sliding = false
 var slide_direction = 0
 var slide_timer = 0.0
 var can_slide = true
-var nombre_potion = 0
-var vie = 10
-var derniere_direction = 1.0
-var niveua_amelioration = 0
+var glass_number = 0
+var hp = 10
+var last_direction = 1.0
+var upgrade_level = 0
 
-signal utilise_potion
-signal mort
+signal use_glass
+signal death
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -34,13 +34,13 @@ func _physics_process(delta: float) -> void:
 	
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction != 0:
-		derniere_direction = direction
+		last_direction = direction
 	
 	if Input.is_action_just_pressed("slide") and not is_sliding and can_slide:
 		if not is_on_floor():
 			can_slide = false
 		is_sliding = true
-		slide_direction = derniere_direction
+		slide_direction = last_direction
 		slide_timer = SLIDE_DURATION
 		sprite.flip_h = slide_direction < 0
 	
@@ -56,11 +56,15 @@ func _physics_process(delta: float) -> void:
 			sprite.flip_h = direction < 0
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-			
-	if Input.is_action_just_pressed("regen") and nombre_potion > 0 and vie < 10:
-		vie += 1
-		nombre_potion -= 1
-		emit_signal("utilise_potion")
+	
+	# si la touche Q est presser et que il a un ver et que ces hp ne sont pas au max
+	if Input.is_action_just_pressed("regen") and glass_number > 0 and hp < 10:
+		# gagne un coeur
+		hp += 1
+		# perd un ver
+		glass_number -= 1
+		# envoi un signal a main ver la fonction _use_glass
+		emit_signal("use_glass")
 		
 	move_and_slide()
 	
@@ -81,16 +85,16 @@ func _physics_process(delta: float) -> void:
 		if sprite.animation != "idle":
 			sprite.play("idle")
 
-func prendre_dega(nombre):
-	vie -= nombre
+func prendre_dega(number):
+	hp -= number
 	# si la vie dessand en dessou de 0
-	if vie <= 0:
-		vie = 0
-		mourir()
+	if hp <= 0:
+		hp = 0
+		dead()
 	
-func mourir():
+func dead():
 	# on recommance au niveau 1
-	vie = 10
-	nombre_potion = 0
-	# envoi un signal a main ver la fonction _mort
-	emit_signal("mort")
+	hp = 10
+	glass_number = 0
+	# envoi un signal a main ver la fonction _death
+	emit_signal("death")

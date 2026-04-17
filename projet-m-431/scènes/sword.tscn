@@ -1,38 +1,38 @@
-[gd_scene format=3 uid="uid://2fhj26ys42s1"]
+[gd_scene format=3 uid="uid://df0rkpkxuwthi"]
 
-[ext_resource type="Texture2D" uid="uid://c0o74q7gmbv1m" path="res://assets/epe/epe.png" id="1_5002q"]
-[ext_resource type="Script" uid="uid://ut2o6rq7046" path="res://script/epe.gd" id="1_y2nin"]
+[ext_resource type="Script" uid="uid://ut2o6rq7046" path="res://script/sword.gd" id="1_wsvc8"]
+[ext_resource type="Texture2D" uid="uid://c0o74q7gmbv1m" path="res://assets/epe/epe.png" id="2_674sn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2nin"]
-atlas = ExtResource("1_5002q")
+atlas = ExtResource("2_674sn")
 region = Rect2(0, 0, 32, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yddup"]
-atlas = ExtResource("1_5002q")
+atlas = ExtResource("2_674sn")
 region = Rect2(32, 0, 32, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_thc8v"]
-atlas = ExtResource("1_5002q")
+atlas = ExtResource("2_674sn")
 region = Rect2(64, 0, 32, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgo8q"]
-atlas = ExtResource("1_5002q")
+atlas = ExtResource("2_674sn")
 region = Rect2(96, 0, 32, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7ije"]
-atlas = ExtResource("1_5002q")
+atlas = ExtResource("2_674sn")
 region = Rect2(128, 0, 32, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5urq"]
-atlas = ExtResource("1_5002q")
+atlas = ExtResource("2_674sn")
 region = Rect2(160, 0, 32, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgi7n"]
-atlas = ExtResource("1_5002q")
+atlas = ExtResource("2_674sn")
 region = Rect2(192, 0, 32, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36qg3"]
-atlas = ExtResource("1_5002q")
+atlas = ExtResource("2_674sn")
 region = Rect2(224, 0, 32, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tfre2"]
@@ -70,8 +70,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amdgf"]
 size = Vector2(32, 128)
 
-[node name="epe" type="Area2D" unique_id=1047488121]
-script = ExtResource("1_y2nin")
+[node name="sword" type="Area2D" unique_id=1047488121]
+script = ExtResource("1_wsvc8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=655804264]
 sprite_frames = SubResource("SpriteFrames_tfre2")

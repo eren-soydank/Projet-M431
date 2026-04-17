@@ -1,12 +1,12 @@
 extends Area2D
 
-signal prendre_degat
+signal take_damage
 
 # l'id dois etre le meme que dans son nom (ver1 etc) 
 # et que la cle dans le dictioneaire dans du niveau
 @export var id = 0
 # le nombre de degat infliger (
-@export var degat = 1
+@export var damage = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,5 +22,5 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# si l'objet est le joueur
 	if body.name == "player":
-		# signal a main var la fonction _prendre_degat
-		emit_signal("prendre_degat", degat)
+		# signal a main var la fonction _take_damage
+		emit_signal("take_damage", damage)

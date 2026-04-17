@@ -9,7 +9,7 @@ signal player_entred
 # et que la cle dans le dictioneaire dans du niveau
 @export var id = 0
 # le niveau vers lequelle la porte envoi
-@export var niveau_direction = 0
+@export var level_destination = 1
 # indique si la porte est ouverte ou fermer pour avoire : "idle", "closed" ou closing
 @export var furst_animation = "idle"
 
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 	# si le joueur est dans la porte et fait W
 	if is_player_in and Input.is_action_just_pressed("interact"):
 		# envoi un signale a main ver la fonction _changeLevel
-		emit_signal("player_entred", niveau_direction)
+		emit_signal("player_entred", level_destination)
 
 # quand un objet entre dans la porte
 func _on_body_entered(body: Node2D) -> void:

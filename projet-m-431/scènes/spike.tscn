@@ -1,17 +1,17 @@
-[gd_scene format=3 uid="uid://cok4e82pqxeqd"]
+[gd_scene format=3 uid="uid://bwbm6jpcsf63l"]
 
-[ext_resource type="Texture2D" uid="uid://bfu4as5aetl4y" path="res://assets/pic.png" id="1_o5r6y"]
-[ext_resource type="Script" uid="uid://385kro85ik4l" path="res://script/pic.gd" id="1_pwh2q"]
+[ext_resource type="Script" uid="uid://385kro85ik4l" path="res://script/pic.gd" id="1_mhn5i"]
+[ext_resource type="Texture2D" uid="uid://bfu4as5aetl4y" path="res://assets/pic.png" id="2_xddbi"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_pwh2q"]
 points = PackedVector2Array(16, 16, -16, 16, 0, -16)
 
-[node name="pic" type="Area2D" unique_id=1605946225]
+[node name="spike" type="Area2D" unique_id=1605946225]
 position = Vector2(-1, 0)
-script = ExtResource("1_pwh2q")
+script = ExtResource("1_mhn5i")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1354420518]
-texture = ExtResource("1_o5r6y")
+texture = ExtResource("2_xddbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=12352364]
 shape = SubResource("ConvexPolygonShape2D_pwh2q")
