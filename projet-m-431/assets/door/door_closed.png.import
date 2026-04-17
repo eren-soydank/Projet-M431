@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bup4fwfcf0ct3"
-path="res://.godot/imported/porte_ferme.png-051a7ac4f7eccaec7e41ae44f47202ef.ctex"
+path="res://.godot/imported/door_closed.png-e0346e26e749a6890463d4ae5b20b6be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/porte/porte_ferme.png"
-dest_files=["res://.godot/imported/porte_ferme.png-051a7ac4f7eccaec7e41ae44f47202ef.ctex"]
+source_file="res://assets/door/door_closed.png"
+dest_files=["res://.godot/imported/door_closed.png-e0346e26e749a6890463d4ae5b20b6be.ctex"]
 
 [params]
 

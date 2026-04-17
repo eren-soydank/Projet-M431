@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkf1xau0isdxe"
-path="res://.godot/imported/porte.png-2715b6a081abf674dc9e11877ebe6e56.ctex"
+uid="uid://bfu4as5aetl4y"
+path="res://.godot/imported/spike.png-6088412b46cc15d96e4d9aa266d475a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/porte/porte.png"
-dest_files=["res://.godot/imported/porte.png-2715b6a081abf674dc9e11877ebe6e56.ctex"]
+source_file="res://assets/spike.png"
+dest_files=["res://.godot/imported/spike.png-6088412b46cc15d96e4d9aa266d475a2.ctex"]
 
 [params]
 

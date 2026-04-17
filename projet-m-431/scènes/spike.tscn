@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bwbm6jpcsf63l"]
 
-[ext_resource type="Script" uid="uid://385kro85ik4l" path="res://script/pic.gd" id="1_mhn5i"]
-[ext_resource type="Texture2D" uid="uid://bfu4as5aetl4y" path="res://assets/pic.png" id="2_xddbi"]
+[ext_resource type="Script" uid="uid://385kro85ik4l" path="res://script/spike.gd" id="1_mhn5i"]
+[ext_resource type="Texture2D" uid="uid://bfu4as5aetl4y" path="res://assets/spike.png" id="2_xddbi"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_pwh2q"]
 points = PackedVector2Array(16, 16, -16, 16, 0, -16)

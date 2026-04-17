@@ -238,5 +238,5 @@ shape = SubResource("CapsuleShape2D_px5sl")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=768723707]
 position = Vector2(18, 57)
 
-[node name="hud0" parent="." unique_id=1047693899 instance=ExtResource("6_g0ffq")]
+[node name="hud" parent="." unique_id=1047693899 instance=ExtResource("6_g0ffq")]
 position = Vector2(17, 57)
