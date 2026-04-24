@@ -89,6 +89,7 @@ animations = [{
 size = Vector2(96, 128)
 
 [node name="door" type="Area2D" unique_id=1629297423]
+z_index = -3
 script = ExtResource("1_adx53")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2012466298]
