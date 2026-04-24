@@ -5,15 +5,18 @@ extends CharacterBody2D
 # le dash (slide) devrait etre déblocker au niveau 1
 const SPEED = 300.0
 const JUMP_VELOCITY = -430.0
+const ATTACK_DURATION = 0.1
 const SLIDE_SPEED = 600.0
 const SLIDE_DURATION = 0.3
 const START_POSITION = Vector2(94.0, -76.0)
 
 @onready var sprite = $AnimatedSprite2D
 
+var is_attacking = false
 var is_sliding = false
 var slide_direction = 0
 var slide_timer = 0.0
+var attack_timer = 0.0
 var can_slide = true
 var glass_number = 0
 var hp = 10
@@ -80,7 +83,7 @@ func _physics_process(delta: float) -> void:
 		
 	if direction != 0:
 		if sprite.animation != "walk":
-			sprite.play("walk")
+			sprite.play("walk")			
 	else:
 		if sprite.animation != "idle":
 			sprite.play("idle")
