@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# si c'est un joueur
 	if body.name == "player":
+		print("Press Q or -")
 		# envoi un signal a main var la fonction _pick_up_glass
 		emit_signal("pick_up_glass", id, number)
 		# ce supprime soi même

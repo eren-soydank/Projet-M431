@@ -7,3 +7,4 @@
 script = ExtResource("1_ryvcx")
 
 [node name="player" parent="." unique_id=881065301 instance=ExtResource("2_8mlq6")]
+z_index = 50

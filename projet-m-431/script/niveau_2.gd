@@ -6,7 +6,7 @@ extends StaticBody2D
 func _ready() -> void:
 # initialise tous les spike dans contenu mettre le nombre du dernier spike plus 1 et bien nommer les spike : 
 # spike0, spike2, etc
-	for n in range(29):
+	for n in range(28):
 		contenu["spike"][n] = get_node("spike" + str(n))
 
 

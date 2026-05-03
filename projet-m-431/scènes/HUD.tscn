@@ -159,12 +159,12 @@ sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart1" type="AnimatedSprite2D" parent="." unique_id=601949040]
-position = Vector2(-461, -286)
+position = Vector2(-495, -286)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart2" type="AnimatedSprite2D" parent="." unique_id=1202760647]
-position = Vector2(-495, -286)
+position = Vector2(-461, -286)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 

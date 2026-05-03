@@ -41,7 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 		is_player_in = true
 		# petit message (à supprimer)
 		if furst_animation == "idle":
-			print("presse W")
+			print("Press E or .")
 
 # quand un objet sort de la porte
 func _on_body_exited(body: Node2D) -> void:

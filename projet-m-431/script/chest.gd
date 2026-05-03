@@ -36,7 +36,7 @@ func _on_body_entered(body: Node2D) -> void:
 	# si c'est un joueur
 	if body.name == "player":
 		if not is_oppened:
-			print("press W")
+			print("Press E or .")
 		is_player_in = true
 
 # quand un objet sort de la colision

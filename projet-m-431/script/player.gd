@@ -22,11 +22,17 @@ var glass_number = 0
 var hp = 10
 var last_direction = 1.0
 var upgrade_level = 0
+var wall_direction = 0
 
 signal use_glass
 signal death
 
 func _physics_process(delta: float) -> void:
+	if is_on_wall():
+		wall_direction = -sign(get_wall_normal().x)
+	else:
+		wall_direction = 0
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
@@ -36,7 +42,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 	
 	var direction := Input.get_axis("move_left", "move_right")
-	if direction != 0:
+	
+	if direction != 0 and !is_sliding:
 		last_direction = direction
 	
 	if Input.is_action_just_pressed("slide") and not is_sliding and can_slide:
@@ -50,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	if is_sliding:
 		velocity.y = 0
 		slide_timer -= delta
-		if slide_timer <= 0:
+		if slide_timer <= 0 or wall_direction == slide_direction:
 			is_sliding = false
 		velocity.x = slide_direction * SLIDE_SPEED
 	else:
