@@ -6,9 +6,11 @@ extends StaticBody2D
 func _ready() -> void:
 # initialise tous les spike dans contenu mettre le nombre du dernier spike plus 1 et bien nommer les spike : 
 # spike0, spike2, etc
-	for n in range(28):
-		contenu["spike"][n] = get_node("spike" + str(n))
-
+	var place = 0
+	for child in get_children():
+		if child.name.begins_with("spike"):
+			contenu["spike"][place] = child
+			place += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")

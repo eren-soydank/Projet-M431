@@ -1,7 +1,7 @@
 extends Node2D
 
 # le niveau actuel
-var curent_level = 1
+var curent_level = 3
 
 @onready var player = $player
 @onready var hud = $player/hud
@@ -15,6 +15,7 @@ func _ready() -> void:
 	# conecter les signaux de player au fonction
 	player.connect("use_glass", _use_glass)
 	player.connect("death", _death)
+	player.connect("double_jump", _double_jump)
 
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
@@ -121,3 +122,13 @@ func _pick_up_sword(id_sword):
 	curent_scene_level.contenu["sword"].erase(id_sword)
 	# augmante le niveau du joueur selon le niveau il pourra attaquer, dash etc
 	player.upgrade_level += 1
+	
+func _double_jump():
+	# chercher l'objet du nuage
+	var double_jump_pad_scene = preload("res://scènes/double_jump_pad.tscn")
+	# l'instansier
+	var double_jump_pad = double_jump_pad_scene.instantiate()
+	# l'ajouter comme node enfant du niveau
+	add_child(double_jump_pad)
+	# le repositionner en fonction de la position du joueur
+	double_jump_pad.global_position = Vector2(player.global_position.x + 10, player.global_position.y + 90)

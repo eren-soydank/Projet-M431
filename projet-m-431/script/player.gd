@@ -5,6 +5,7 @@ extends CharacterBody2D
 # le dash (slide) devrait etre déblocker au niveau 1
 const SPEED = 300.0
 const JUMP_VELOCITY = -430.0
+const DOUBLE_JUMP_VELOCITY = -430.0
 const ATTACK_DURATION = 0.1
 const SLIDE_SPEED = 600.0
 const SLIDE_DURATION = 0.3
@@ -23,9 +24,11 @@ var hp = 10
 var last_direction = 1.0
 var upgrade_level = 0
 var wall_direction = 0
+var can_double_jump = true
 
 signal use_glass
 signal death
+signal double_jump
 
 func _physics_process(delta: float) -> void:
 	if is_on_wall():
@@ -37,9 +40,17 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	else:
 		can_slide = true
+		can_double_jump = true
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor() and not is_sliding:
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump") and not is_sliding:
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		elif can_double_jump:
+			velocity.y = DOUBLE_JUMP_VELOCITY
+			can_double_jump = false
+			# juste pour que l'animation de saut ce refasse
+			sprite.play("idle")
+			emit_signal("double_jump")
 	
 	var direction := Input.get_axis("move_left", "move_right")
 	
