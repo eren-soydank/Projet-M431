@@ -1,8 +1,7 @@
 # Projet-M431
----
+Conventions de nommage : snake_case
 ## But du projet
 - Jeu
-Conventions de nommage : snake_case
 
 ## Raccourcis clavier
 Mouvements : WASD / Flèches  
