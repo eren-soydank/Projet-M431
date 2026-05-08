@@ -1,7 +1,7 @@
 extends Node2D
 
 # le niveau actuel
-var curent_level = 1
+var curent_level = 2
 
 @onready var player = $player
 @onready var hud = $player/hud
