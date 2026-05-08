@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://forukdfgdtxb"]
+[gd_scene format=3 uid="uid://ble8bevi6ypgi"]
 
 [ext_resource type="Script" uid="uid://dnn0xvplgsl34" path="res://script/player.gd" id="1_k1be4"]
 [ext_resource type="Texture2D" uid="uid://cfgrpdbyhf62f" path="res://assets/Knight_player/Attack_KG_1.png" id="2_ojynp"]
+[ext_resource type="Texture2D" uid="uid://c46l4xxu0xc7r" path="res://assets/Knight_player/Dying_KG_2.png" id="3_j2ov3"]
 [ext_resource type="Texture2D" uid="uid://dru7fnnb1kbp3" path="res://assets/Knight_player/Drinking_KG_1.png" id="3_ojynp"]
 [ext_resource type="Texture2D" uid="uid://bemwj32v7on32" path="res://assets/Knight_player/Idle_KG_1.png" id="3_s4tku"]
 [ext_resource type="Texture2D" uid="uid://60ku8w0rjink" path="res://assets/Knight_player/Jump_KG_1.png" id="4_ojynp"]
@@ -31,6 +32,30 @@ region = Rect2(400, 0, 100, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kgfef"]
 atlas = ExtResource("2_ojynp")
+region = Rect2(500, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtb7m"]
+atlas = ExtResource("3_j2ov3")
+region = Rect2(0, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_546ji"]
+atlas = ExtResource("3_j2ov3")
+region = Rect2(100, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo6dd"]
+atlas = ExtResource("3_j2ov3")
+region = Rect2(200, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmo3l"]
+atlas = ExtResource("3_j2ov3")
+region = Rect2(300, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neffy"]
+atlas = ExtResource("3_j2ov3")
+region = Rect2(400, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atnal"]
+atlas = ExtResource("3_j2ov3")
 region = Rect2(500, 0, 100, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1iohi"]
@@ -196,6 +221,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mtb7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_546ji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo6dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmo3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neffy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atnal")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1iohi")
 }, {
 "duration": 1.0,
@@ -218,7 +266,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"drinking",
-"speed": 7.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
