@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dv2aoe6i4ida"]
 
-[ext_resource type="Script" uid="uid://c3mjs53src2jg" path="res://script/niveau_1.gd" id="1_ihnqk"]
+[ext_resource type="Script" uid="uid://c3mjs53src2jg" path="res://script/level_1.gd" id="1_ihnqk"]
 [ext_resource type="Texture2D" uid="uid://chtg755at0xfq" path="res://assets/Texture/TX Tileset Ground.png" id="2_4jxa6"]
 [ext_resource type="PackedScene" uid="uid://dckly4eeo070p" path="res://scènes/door.tscn" id="3_ihnqk"]
 
