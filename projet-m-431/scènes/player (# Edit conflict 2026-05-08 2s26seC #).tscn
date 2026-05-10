@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ble8bevi6ypgi"]
+[gd_scene format=3 uid="uid://duwotdk476208"]
 
 [ext_resource type="Script" uid="uid://dnn0xvplgsl34" path="res://script/player.gd" id="1_k1be4"]
 [ext_resource type="Texture2D" uid="uid://cfgrpdbyhf62f" path="res://assets/Knight_player/Attack_KG_1.png" id="2_ojynp"]

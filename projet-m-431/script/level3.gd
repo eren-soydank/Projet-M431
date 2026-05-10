@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var contenu = {"exit_door" : {}, "glass" : {0 : $glass0}, "spike" : {}, "chest" : {0 : $chest0}, "sword" : {}}
+@onready var contenu = {"exit_door" : {1:$door1}, "glass" : {0 : $glass0}, "spike" : {}, "chest" : {0 : $chest0}, "sword" : {}}
 
 
 # Called when the node enters the scene tree for the first time.
