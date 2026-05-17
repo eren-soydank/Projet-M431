@@ -10,7 +10,6 @@ const SLIDE_SPEED = 600.0
 const SLIDE_DURATION = 0.3
 const DRINK_DURATION = 0.3
 const START_POSITION = Vector2(94.0, -76.0)
-const ATTACK_HIT_BOX_SCENE = preload("res://scènes/attack_hit_box.tscn")
 @onready var sprite = $AnimatedSprite2D
 var is_attacking = false
 var is_sliding = false
@@ -68,9 +67,16 @@ func _physics_process(delta: float) -> void:
 		if attack_timer <= 0:
 			is_attacking = false
 			if attack_hit_box != null:
-				attack_hit_box.queue_free()
+				# attack_hit_box.queue_free()
 				attack_hit_box = null
-		elif attack_hit_box != null:
+		elif attack_timer <= 0.3 and attack_hit_box == null:
+			# chercher l'objet attack_hit_box
+			var attack_hit_box_scene = preload("res://scènes/attack_hit_box.tscn")
+			# l'instansier
+			attack_hit_box = attack_hit_box_scene.instantiate()
+			# l'ajouter comme node enfant du niveau
+			add_child(attack_hit_box)
+		if attack_hit_box != null:
 			attack_hit_box.get_node("Sprite2D").flip_h = last_direction < 0
 			# le repositionner en fonction de la position de la position et de la direction
 			if last_direction == 1:
@@ -115,11 +121,6 @@ func attack():
 	if Input.is_action_just_pressed("attack") and not is_sliding and not is_attacking and not is_drinking:
 		is_attacking = true
 		attack_timer = ATTACK_DURATION
-		if attack_hit_box == null:
-			# instansier la hit-box
-			attack_hit_box = ATTACK_HIT_BOX_SCENE.instantiate()
-			# l'ajouter comme node enfant du niveau
-			add_child(attack_hit_box)
 
 func regen():
 	# Regen — déclenche l'animation de boisson, le soin se fait au début

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bnpynuox5rdn"]
 
-[ext_resource type="Texture2D" uid="uid://bow8qud3eri7u" path="res://assets/Sprite-0003.png" id="1_fdj23"]
+[ext_resource type="Texture2D" uid="uid://bow8qud3eri7u" path="res://assets/cloud.png" id="1_fdj23"]
 [ext_resource type="Script" uid="uid://b571egir4dpwo" path="res://script/double_jump_pad.gd" id="2_hlmtv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i51nl"]

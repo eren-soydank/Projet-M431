@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfgrpdbyhf62f"
-path="res://.godot/imported/Attack_KG_1.png-9563f67cbacc750205edca751e1f7265.ctex"
+uid="uid://c3548xu4d3o4q"
+path="res://.godot/imported/Attaque_Hit-box.png-2725599271a7525fee99d35c84429ed9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Knight_player/Attack_KG_1.png"
-dest_files=["res://.godot/imported/Attack_KG_1.png-9563f67cbacc750205edca751e1f7265.ctex"]
+source_file="res://assets/Knight_player/Attaque_Hit-box.png"
+dest_files=["res://.godot/imported/Attaque_Hit-box.png-2725599271a7525fee99d35c84429ed9.ctex"]
 
 [params]
 

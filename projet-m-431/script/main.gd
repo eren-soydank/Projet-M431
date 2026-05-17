@@ -1,8 +1,9 @@
 extends Node2D
 
 # le niveau actuel
+const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
-var curent_level = 3
+var curent_level = 1
 
 @onready var player = $player
 @onready var hud = $player/hud
@@ -21,8 +22,9 @@ func _ready() -> void:
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	pass
-
+	if player.global_position.y >= 500:
+		_take_damage(1)
+	
 
 func connect_objet():
 	# commecter les porte a la fonction _changeLevel
@@ -47,7 +49,7 @@ func connect_objet():
 			sword.connect("pick_up_sword", _pick_up_sword)
 
 
-#la fonction pour changer de niveau
+# la fonction pour changer de niveau
 func _changeLevel(level_destination):
 	#suprimer la scene du niveau qu'on quitte
 	if curent_scene_level != null:
@@ -126,9 +128,8 @@ func _pick_up_sword(id_sword):
 	
 func _double_jump():
 	# chercher l'objet du nuage
-	var double_jump_pad_scene = preload("res://scènes/double_jump_pad.tscn")
 	# l'instansier
-	var double_jump_pad = double_jump_pad_scene.instantiate()
+	var double_jump_pad = DOUBLE_JUMP_PAD_SCENE.instantiate()
 	# l'ajouter comme node enfant du niveau
 	add_child(double_jump_pad)
 	# le repositionner en fonction de la position du joueur

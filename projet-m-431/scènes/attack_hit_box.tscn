@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b5croifw673np"]
+
+[ext_resource type="Texture2D" uid="uid://c3548xu4d3o4q" path="res://assets/Knight_player/Attaque_Hit-box.png" id="1_xg1k8"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_da5a8"]
+points = PackedVector2Array(-37, 20, 5, 23, 7, 10, -10, -10, -29, -30, 5, -19, 24, 0, 30, 26, 18, 35, -9, 32)
+
+[node name="attack_hit_box" type="Node2D" unique_id=1153942301]
+position = Vector2(56, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1045580917]
+position = Vector2(0, 3.8146973e-06)
+scale = Vector2(0.9166667, 0.9166667)
+texture = ExtResource("1_xg1k8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1264764459]
+shape = SubResource("ConvexPolygonShape2D_da5a8")
