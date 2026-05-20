@@ -5,12 +5,14 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -430.0
 const DOUBLE_JUMP_VELOCITY = -430.0
-const ATTACK_DURATION = 0.4
+const POGO_VELOCITY = -350.0
+const ATTACK_DURATION = 0.3
 const SLIDE_SPEED = 600.0
 const SLIDE_DURATION = 0.3
 const DRINK_DURATION = 0.3
 const START_POSITION = Vector2(94.0, -76.0)
 const ATTACK_HIT_BOX_SCENE = preload("res://scènes/attack_hit_box.tscn")
+const ATTACK_HIT_BOX_POGO_SCENE = preload("res://scènes/attack_hit_box_pogo.tscn")
 @onready var sprite = $AnimatedSprite2D
 var is_attacking = false
 var is_sliding = false
@@ -34,17 +36,20 @@ signal double_jump
 
 func _physics_process(delta: float) -> void:
 	
+	# detection de mur
 	if is_on_wall():
 		wall_direction = -sign(get_wall_normal().x)
 	else:
 		wall_direction = 0
 	
+	# detection du sol
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
 		can_slide = true
 		can_double_jump = true
 	
+	# recuperation de la direction et mouvement
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction != 0 and not is_sliding and not is_drinking:
 		last_direction = direction
@@ -56,41 +61,11 @@ func _physics_process(delta: float) -> void:
 		
 	jump()
 
-	attack()
+	attack(delta)
 
-	regen()
+	regen(delta)
 	
-	slide()
-	
-	# Attack cooldown
-	if is_attacking:
-		attack_timer -= delta
-		if attack_timer <= 0:
-			is_attacking = false
-			if attack_hit_box != null:
-				attack_hit_box.queue_free()
-				attack_hit_box = null
-		elif attack_hit_box != null:
-			attack_hit_box.get_node("Sprite2D").flip_h = last_direction < 0
-			# le repositionner en fonction de la position de la position et de la direction
-			if last_direction == 1:
-				attack_hit_box.global_position = Vector2(global_position.x + 50, global_position.y + 50)
-			else:
-				attack_hit_box.global_position = Vector2(global_position.x - 10, global_position.y + 50)
-
-	# Drink cooldown
-	if is_drinking:
-		drink_timer -= delta
-		if drink_timer <= 0:
-			is_drinking = false
-	
-	# slide cooldown
-	if is_sliding:
-		velocity.y = 0
-		slide_timer -= delta
-		if slide_timer <= 0 or wall_direction == slide_direction:
-			is_sliding = false
-		velocity.x = slide_direction * SLIDE_SPEED
+	slide(delta)
 
 	# bouger
 	move_and_slide()
@@ -110,18 +85,44 @@ func jump():
 				sprite.play("idle")
 			emit_signal("double_jump")
 			
-func attack():
+func attack(delta):
 	# Ne peut pas attaquer en slideant
 	if Input.is_action_just_pressed("attack") and not is_sliding and not is_attacking and not is_drinking:
 		is_attacking = true
 		attack_timer = ATTACK_DURATION
 		if attack_hit_box == null:
-			# instansier la hit-box
-			attack_hit_box = ATTACK_HIT_BOX_SCENE.instantiate()
+			if Input.is_action_pressed("down") and not is_on_floor():
+				# instansier la hit-box
+				attack_hit_box = ATTACK_HIT_BOX_POGO_SCENE.instantiate()
+				attack_hit_box.connect("pogo", _pogo)
+			else:
+				# instansier la hit-box
+				attack_hit_box = ATTACK_HIT_BOX_SCENE.instantiate()
 			# l'ajouter comme node enfant du niveau
 			add_child(attack_hit_box)
-
-func regen():
+	
+	# Attack cooldown
+	if is_attacking:
+		attack_timer -= delta
+		if attack_timer <= 0 or (attack_hit_box.name == "attack_hit_box_pogo" and is_on_floor()):
+			end_attack()
+				
+		elif attack_hit_box != null:
+			attack_hit_box.get_node("Sprite2D").flip_h = last_direction < 0
+			# le repositionner en fonction de la position de la position et de la direction
+			if attack_hit_box.name == "attack_hit_box_pogo":
+				attack_hit_box.global_position = Vector2(global_position.x + 20, global_position.y + 80)
+			elif last_direction == 1:
+				attack_hit_box.global_position = Vector2(global_position.x + 50, global_position.y + 50)
+			else:
+				attack_hit_box.global_position = Vector2(global_position.x - 10, global_position.y + 50)
+func end_attack():
+	is_attacking = false
+	if attack_hit_box != null:
+		attack_hit_box.queue_free()
+		attack_hit_box = null
+		
+func regen(delta):
 	# Regen — déclenche l'animation de boisson, le soin se fait au début
 	if Input.is_action_just_pressed("regen") and glass_number > 0 and hp < 10 and not is_drinking and not is_attacking and not is_sliding and is_on_floor():
 		hp += 1
@@ -129,8 +130,14 @@ func regen():
 		emit_signal("use_glass")
 		is_drinking = true
 		drink_timer = DRINK_DURATION
-		
-func slide():
+	
+	# Drink cooldown
+	if is_drinking:
+		drink_timer -= delta
+		if drink_timer <= 0:
+			is_drinking = false
+	
+func slide(delta):
 	if Input.is_action_just_pressed("slide") and not is_sliding and not is_drinking and can_slide:
 		if not is_on_floor():
 			can_slide = false
@@ -138,6 +145,14 @@ func slide():
 		slide_direction = last_direction
 		slide_timer = SLIDE_DURATION
 		sprite.flip_h = slide_direction < 0
+	
+	# slide cooldown
+	if is_sliding:
+		velocity.y = 0
+		slide_timer -= delta
+		if slide_timer <= 0 or wall_direction == slide_direction:
+			is_sliding = false
+		velocity.x = slide_direction * SLIDE_SPEED
 
 func animations(direction):
 	if not is_drinking and not is_sliding:
@@ -150,7 +165,9 @@ func animations(direction):
 		return
 
 	if is_attacking:
-		if sprite.animation != "attack":
+		if sprite.animation != "attack_pogo" and attack_hit_box.name == "attack_hit_box_pogo":
+			sprite.play("attack_pogo")
+		elif sprite.animation != "attack" and attack_hit_box.name == "attack_hit_box":
 			sprite.play("attack")
 		return
 
@@ -173,6 +190,7 @@ func animations(direction):
 	
 func prendre_dega(number):
 	hp -= number
+	end_attack()
 	if hp <= 0:
 		hp = 0
 		dead()
@@ -180,4 +198,10 @@ func prendre_dega(number):
 func dead():
 	hp = 10
 	glass_number = 0
+	end_attack()
 	emit_signal("death")
+
+func _pogo():
+	velocity.y = POGO_VELOCITY
+	can_slide = true
+	can_double_jump = true

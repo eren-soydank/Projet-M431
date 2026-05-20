@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c3548xu4d3o4q" path="res://assets/Knight_player/Attaque_Hit-box.png" id="1_xg1k8"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_da5a8"]
-points = PackedVector2Array(-37, 20, 5, 23, 7, 10, -10, -10, -29, -30, 5, -19, 24, 0, 30, 26, 18, 35, -9, 32)
+points = PackedVector2Array(-37, 20, 7, 23, 10, 9, -10, -10, -29, -30, 8, -20, 24, 0, 32, 23, 25, 34, 2, 35)
 
-[node name="attack_hit_box" type="Node2D" unique_id=1153942301]
+[node name="attack_hit_box" type="Area2D" unique_id=1250891968]
 position = Vector2(56, 8)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1045580917]

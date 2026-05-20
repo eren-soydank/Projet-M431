@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://0qwa3gwho2ou"]
+
+[ext_resource type="Script" uid="uid://co6j65g0efb4j" path="res://script/attack_hit_box_pogo.gd" id="1_8wt42"]
+[ext_resource type="Texture2D" uid="uid://bta4fv7mvkrl8" path="res://assets/Knight_player/attack_hit_box2.png" id="1_s4ier"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_s4ier"]
+points = PackedVector2Array(10, 23, 27, 15, 37, 1, 37, -20, 28, -36, 24, -10, 16, 1, 0, 6, -16, 1, -24, -10, -28, -36, -37, -20, -37, -1, -27, 15, -10, 23)
+
+[node name="attack_hit_box_pogo" type="Area2D" unique_id=1767159209]
+script = ExtResource("1_8wt42")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2014662303]
+scale = Vector2(0.71250004, 1)
+texture = ExtResource("1_s4ier")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1362299576]
+shape = SubResource("ConvexPolygonShape2D_s4ier")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
