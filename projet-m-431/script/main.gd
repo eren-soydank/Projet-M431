@@ -3,7 +3,7 @@ extends Node2D
 # le niveau actuel
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
-var curent_level = 1
+var curent_level = 3
 
 @onready var player = $player
 @onready var hud = $player/hud
@@ -43,10 +43,10 @@ func connect_objet():
 	for chest in curent_scene_level.contenu["chest"].values():
 		if not chest.is_connected("oppen_chest", _oppen_chest):
 			chest.connect("oppen_chest", _oppen_chest)
-	# commecter les epe a la fonction _pick_up_sword
-	for sword in curent_scene_level.contenu["sword"].values():
-		if not sword.is_connected("pick_up_sword", _pick_up_sword):
-			sword.connect("pick_up_sword", _pick_up_sword)
+	# commecter les epe a la fonction _pick_up_object
+	for object in curent_scene_level.contenu["object"].values():
+		if not object.is_connected("pick_up_object", _pick_up_object):
+			object.connect("pick_up_object", _pick_up_object)
 
 
 # la fonction pour changer de niveau
@@ -111,18 +111,18 @@ func _oppen_chest(id, objet_name):
 	var instance = objet.instantiate()
 	# l'ajouter comme node enfant du niveau
 	curent_scene_level.add_child(instance)
-	instance.id = len(curent_scene_level.contenu[objet_name]) + 1
+	instance.id = len(curent_scene_level.contenu["object"]) + 1
 	# le met dans le dictionaire contenu du niveau
-	curent_scene_level.contenu[objet_name][len(curent_scene_level.contenu[objet_name]) + 1] = instance
+	curent_scene_level.contenu["object"][len(curent_scene_level.contenu["object"]) + 1] = instance
 	# le tp au dessu du cofre
 	instance.position.x = curent_scene_level.contenu["chest"][id].position.x
 	instance.position.y = curent_scene_level.contenu["chest"][id].position.y - 104
 	# met a jour tout les connection du contenu du niveau au fonction consernéa
 	connect_objet()
 
-func _pick_up_sword(id_sword):
+func _pick_up_object(id_object):
 	# supprime l'epe du contenu du niveau
-	curent_scene_level.contenu["sword"].erase(id_sword)
+	curent_scene_level.contenu["object"].erase(id_object)
 	# augmante le niveau du joueur selon le niveau il pourra attaquer, dash etc
 	player.upgrade_level += 1
 	

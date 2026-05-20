@@ -7,6 +7,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
 
@@ -16,5 +17,4 @@ func _pogo():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name.begins_with("spike"):
-		print(area.name)
 		_pogo()
