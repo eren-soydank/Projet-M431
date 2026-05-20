@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cbt1m40dv3e6e"]
+
+[ext_resource type="Script" uid="uid://dyij8oubyimp1" path="res://script/parchment.gd" id="1_fnkcg"]
+[ext_resource type="Texture2D" uid="uid://bh4rhicalnudf" path="res://assets/parchment.png" id="2_fnkcg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gbr6"]
+atlas = ExtResource("2_fnkcg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ph4xr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gbr6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ectf5"]
+size = Vector2(32, 32)
+
+[node name="parchment" type="Area2D" unique_id=989962782]
+script = ExtResource("1_fnkcg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=365167145]
+position = Vector2(-9.536743e-07, -4.7683716e-07)
+scale = Vector2(1, 0.99999994)
+sprite_frames = SubResource("SpriteFrames_ph4xr")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1266514093]
+shape = SubResource("RectangleShape2D_ectf5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

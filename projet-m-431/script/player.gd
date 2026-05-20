@@ -1,7 +1,6 @@
 extends CharacterBody2D
-# j'ai permi de faire des slide en l'aire
 # l'attaque dois etre débloquer au niveau 1
-# le dash (slide) devrait etre débloquer au niveau 1
+# le dash (slide) devrait etre débloquer au niveau 2
 const SPEED = 300.0
 const JUMP_VELOCITY = -430.0
 const DOUBLE_JUMP_VELOCITY = -430.0
@@ -87,7 +86,7 @@ func jump():
 			
 func attack(delta):
 	# Ne peut pas attaquer en slideant
-	if Input.is_action_just_pressed("attack") and not is_sliding and not is_attacking and not is_drinking:
+	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_sliding and not is_attacking and not is_drinking:
 		is_attacking = true
 		attack_timer = ATTACK_DURATION
 		if attack_hit_box == null:
@@ -138,7 +137,7 @@ func regen(delta):
 			is_drinking = false
 	
 func slide(delta):
-	if Input.is_action_just_pressed("slide") and not is_sliding and not is_drinking and can_slide:
+	if Input.is_action_just_pressed("slide") and upgrade_level >= 2 and not is_sliding and not is_drinking and can_slide:
 		if not is_on_floor():
 			can_slide = false
 		is_sliding = true
