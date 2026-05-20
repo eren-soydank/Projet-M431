@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var contenu = {"exit_door" : {0 : $door0}, "glass" : {}, "spike" : {}, "chest" : {}, "sword" : {}}
+@onready var contenu = {"exit_door" : {0 : $door0}, "glass" : {}, "spike" : {}, "chest" : {}, "object" : {}}
 
 # fonction qui c'exécute une fois au debut
 func _ready() -> void:

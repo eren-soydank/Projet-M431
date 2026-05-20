@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var contenu = {"exit_door" : {}, "glass" : {}, "spike" : {}, "chest" : {}, "sword" : {}}
+@onready var contenu = {"exit_door" : {}, "glass" : {0 : $glass0}, "spike" : {}, "chest" : {0 : $chest0}, "object" : {}}
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,5 +15,6 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
