@@ -24,12 +24,8 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	# si un joueur est en colision avec lui et qu'il appui sur W
-	if Input.is_action_just_pressed("interact") and is_player_in and !is_oppened:
-		# lance l'animation d'ouverture de la valeur corespondante
-		sprite.play("oppening" + str(value))
-		is_oppened = true
-		# envoi un  signal a main ver la fonction _oppen_chest
-		emit_signal("oppen_chest", id, content)
+	if Input.is_action_just_pressed("interact") and is_player_in:
+		oppen()
 
 # quand un obget renre en colision avec lui
 func _on_body_entered(body: Node2D) -> void:
@@ -44,3 +40,11 @@ func _on_body_exited(body: Node2D) -> void:
 	# si c'est un joueur
 	if body.name == "player":
 		is_player_in = false
+
+func oppen():
+	if not is_oppened:
+		# lance l'animation d'ouverture de la valeur corespondante
+		sprite.play("oppening" + str(value))
+		is_oppened = true
+		# envoi un  signal a main ver la fonction _oppen_chest
+		emit_signal("oppen_chest", id, content)
