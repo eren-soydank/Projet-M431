@@ -67,7 +67,12 @@ func _changeLevel(level_destination):
 	curent_scene_level = instance
 	connect_objet()
 	# on tp le joueur au debut du niveau
+	tp(player.START_POSITION)
+
+func tp(position):
 	player.global_position = player.START_POSITION
+	player.end_attack()
+	player.end_slide()
 	
 
 func _pick_up_glass(id_glass, number):
@@ -83,7 +88,7 @@ func _take_damage(number):
 	# met a jour le nombre de coeur dans l'hud
 	hud.update_hearts(player.hp)
 	# tp le joueur au debut du niveau
-	player.global_position = player.START_POSITION
+	tp(player.START_POSITION)
 	
 # comme la fonction vien directement de joueur il met lui meme a jour ces vies
 func _use_glass():
@@ -102,7 +107,7 @@ func _death():
 	# charge le niveau 1 et permet de ne pas supprimer les objet en cour d'utilisation
 	call_deferred("_changeLevel", 1)
 	# tp le joueur a debut du niveau
-	player.global_position = player.START_POSITION
+	tp(player.START_POSITION)
 	
 func _oppen_chest(id, objet_name):
 	# chercher l'objet du cofre

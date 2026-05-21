@@ -150,8 +150,11 @@ func slide(delta):
 		velocity.y = 0
 		slide_timer -= delta
 		if slide_timer <= 0 or wall_direction == slide_direction:
-			is_sliding = false
+			end_slide()
 		velocity.x = slide_direction * SLIDE_SPEED
+
+func end_slide():
+	is_sliding = false
 
 func animations(direction):
 	if not is_drinking and not is_sliding:
