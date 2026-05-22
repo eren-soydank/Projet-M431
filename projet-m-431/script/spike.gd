@@ -2,10 +2,7 @@ extends Area2D
 
 signal take_damage
 
-# l'id dois etre le meme que dans son nom (ver1 etc) 
-# et que la cle dans le dictioneaire dans du niveau
-@export var id = 0
-# le nombre de degat infliger (
+# le nombre de degat infliger
 @export var damage = 1
 
 # Called when the node enters the scene tree for the first time.

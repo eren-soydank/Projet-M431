@@ -12,6 +12,7 @@ var curent_level = 1
 
 # La fonction qui ce fait une foi au debut du jeu
 func _ready() -> void:
+	# player.upgrade_level = 1
 	# mettre le niveau (curent_level) 
 	_changeLevel(curent_level)
 	# conecter les signaux de player au fonction
@@ -24,30 +25,25 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if player.global_position.y >= 500:
 		_take_damage(1)
-	
+		
+	if Input.is_action_just_pressed("quit"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+		#get_tree().quit()
 
 func connect_objet():
-	# commecter les porte a la fonction _changeLevel
-	for door in curent_scene_level.contenu["exit_door"].values():
-		if not door.is_connected("player_entred", _changeLevel):
-			door.connect("player_entred", _changeLevel)
-	# commecter les ver a la fonction _pick_up_glass
-	for glass in curent_scene_level.contenu["glass"].values():
-		if not glass.is_connected("pick_up_glass", _pick_up_glass):
-			glass.connect("pick_up_glass", _pick_up_glass)
-	# commecter les pic a la fonction _take_damage
-	for spike in curent_scene_level.contenu["spike"].values():
-		if not spike.is_connected("take_damage", _take_damage):
-			spike.connect("take_damage", _take_damage)
-	# commecter les chest a la fonction _oppen_chest
-	for chest in curent_scene_level.contenu["chest"].values():
-		if not chest.is_connected("oppen_chest", _oppen_chest):
-			chest.connect("oppen_chest", _oppen_chest)
-	# commecter les epe a la fonction _pick_up_object
-	for object in curent_scene_level.contenu["object"].values():
-		if not object.is_connected("pick_up_object", _pick_up_object):
-			object.connect("pick_up_object", _pick_up_object)
-
+	for child in curent_scene_level.get_children():
+		# commecter les porte a la fonction _changeLevel
+		if child.name.begins_with("door") and not child.is_connected("player_entred", _changeLevel) and not child.is_close:
+			child.connect("player_entred", _changeLevel)
+		# commecter les ver a la fonction _pick_up_glass
+		elif child.name.begins_with("glass") and not child.is_connected("pick_up_glass", _pick_up_glass):
+			child.connect("pick_up_glass", _pick_up_glass)
+		# commecter les pic a la fonction _take_damage
+		elif child.name.begins_with("spike") and not child.is_connected("take_damage", _take_damage):
+			child.connect("take_damage", _take_damage)
+		# commecter les chest a la fonction _oppen_chest
+		elif child.name.begins_with("chest") and not child.is_connected("oppen_chest", _oppen_chest):
+			child.connect("oppen_chest", _oppen_chest)
 
 # la fonction pour changer de niveau
 func _changeLevel(level_destination):
@@ -69,15 +65,12 @@ func _changeLevel(level_destination):
 	# on tp le joueur au debut du niveau
 	tp(player.START_POSITION)
 
-func tp(position):
-	player.global_position = player.START_POSITION
-	player.end_attack()
-	player.end_slide()
-	
 
-func _pick_up_glass(id_glass, number):
-	# supprime la potion du dictionaire contenu du niveau 
-	curent_scene_level.contenu["glass"].erase(id_glass)
+func tp(destination):
+	player.global_position = destination
+	player.last_direction = 1
+
+func _pick_up_glass(number):
 	player.glass_number += number
 	# met a jour le nombre afficher dans l'hud
 	hud.update_glass(player.glass_number)
@@ -109,25 +102,19 @@ func _death():
 	# tp le joueur a debut du niveau
 	tp(player.START_POSITION)
 	
-func _oppen_chest(id, objet_name):
+func _oppen_chest(chest, objet_name):
 	# chercher l'objet du cofre
 	var objet = load("res://scènes/" + objet_name + ".tscn")
 	# l'instansier
-	var instance = objet.instantiate()
+	var object = objet.instantiate()
 	# l'ajouter comme node enfant du niveau
-	curent_scene_level.add_child(instance)
-	instance.id = len(curent_scene_level.contenu["object"]) + 1
-	# le met dans le dictionaire contenu du niveau
-	curent_scene_level.contenu["object"][len(curent_scene_level.contenu["object"]) + 1] = instance
+	curent_scene_level.add_child(object)
 	# le tp au dessu du cofre
-	instance.position.x = curent_scene_level.contenu["chest"][id].position.x
-	instance.position.y = curent_scene_level.contenu["chest"][id].position.y - 104
-	# met a jour tout les connection du contenu du niveau au fonction consernéa
-	connect_objet()
+	object.position.x = chest.position.x
+	object.position.y = chest.position.y - 104
+	object.connect("pick_up_object", _pick_up_object)
 
-func _pick_up_object(id_object):
-	# supprime l'epe du contenu du niveau
-	curent_scene_level.contenu["object"].erase(id_object)
+func _pick_up_object():
 	# augmante le niveau du joueur selon le niveau il pourra attaquer, dash etc
 	player.upgrade_level += 1
 	

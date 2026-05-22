@@ -1,9 +1,5 @@
 extends Area2D
 
-# l'id dois etre le meme que dans son nom (ver1 etc) 
-# et que la cle dans le dictioneaire dans du niveau
-@export var id = 0
-
 @onready var sprite = $AnimatedSprite2D
 
 signal pick_up_object
@@ -24,6 +20,6 @@ func _on_body_entered(body: Node2D) -> void:
 	# si c'est un joueur
 	if body.name == "player":
 		# envoi un signal a main var la fonction _pick_up_sword
-		emit_signal("pick_up_object", id)
+		emit_signal("pick_up_object")
 		# ce supprime soi même
 		queue_free()

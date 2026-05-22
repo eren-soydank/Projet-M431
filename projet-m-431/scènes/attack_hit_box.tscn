@@ -3,20 +3,60 @@
 [ext_resource type="Script" uid="uid://bsbdsbxq7moy2" path="res://script/attack_hit_box.gd" id="1_8n4hx"]
 [ext_resource type="Texture2D" uid="uid://c3548xu4d3o4q" path="res://assets/Knight_player/Attaque_Hit-box.png" id="1_xg1k8"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsm60"]
+atlas = ExtResource("1_xg1k8")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n4hx"]
+atlas = ExtResource("1_xg1k8")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bsm60"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_bsm60")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_bsm60")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8n4hx")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8n4hx")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8n4hx")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_bsm60")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_bsm60")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 20.0
+}]
+
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_da5a8"]
-points = PackedVector2Array(-37, 20, 7, 23, 10, 9, -10, -10, -29, -30, 8, -20, 24, 0, 32, 23, 25, 34, 2, 35)
+points = PackedVector2Array(-37, 20, 7, 23, 10, 9, -10, -16, -26, -37, 10, -24, 25, -2, 32, 23, 25, 34, 2, 35)
 
 [node name="attack_hit_box" type="Area2D" unique_id=1250891968]
 position = Vector2(56, 8)
 script = ExtResource("1_8n4hx")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1045580917]
-position = Vector2(0, 3.8146973e-06)
-scale = Vector2(0.9166667, 0.9166667)
-texture = ExtResource("1_xg1k8")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058255617]
+position = Vector2(0.99999994, -4)
+scale = Vector2(0.9166667, 1.0416666)
+sprite_frames = SubResource("SpriteFrames_bsm60")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1264764459]
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("ConvexPolygonShape2D_da5a8")
+disabled = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

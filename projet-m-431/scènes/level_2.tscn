@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://bv6505dr3kgkb"]
 
-[ext_resource type="Script" uid="uid://d5p0anoemyyc" path="res://script/level_2.gd" id="1_7ahcd"]
 [ext_resource type="Texture2D" uid="uid://chtg755at0xfq" path="res://assets/Texture/TX Tileset Ground.png" id="2_j8amr"]
 [ext_resource type="PackedScene" uid="uid://bjkdltgimj8nb" path="res://scènes/glass.tscn" id="3_7ahcd"]
 [ext_resource type="PackedScene" uid="uid://dckly4eeo070p" path="res://scènes/door.tscn" id="4_7ahcd"]
@@ -689,7 +688,6 @@ size = Vector2(128, 32)
 size = Vector2(32, 31.999996)
 
 [node name="level2" type="StaticBody2D" unique_id=528812326]
-script = ExtResource("1_7ahcd")
 
 [node name="TileMap0" type="TileMap" parent="." unique_id=1594617777]
 tile_set = SubResource("TileSet_8dnir")
@@ -702,11 +700,10 @@ number = 10
 
 [node name="door0" parent="." unique_id=1629297423 instance=ExtResource("4_7ahcd")]
 position = Vector2(119, -48)
-furst_animation = "closing"
+is_close = true
 
 [node name="door1" parent="." unique_id=458783099 instance=ExtResource("4_7ahcd")]
 position = Vector2(1815, 176)
-id = 1
 level_destination = 3
 
 [node name="spike0" parent="." unique_id=1605946225 instance=ExtResource("5_j8amr")]
