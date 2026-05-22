@@ -14,6 +14,10 @@ config/name="Projet-M431"
 run/main_scene="uid://b2qpwxudwxjx7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[display]
+
+window/size/mode=3
+
 [input]
 
 slide={

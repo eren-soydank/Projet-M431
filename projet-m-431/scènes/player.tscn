@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://mfsi2htcgyek" path="res://assets/Knight_player/Rolling_KG_1.png" id="5_s4tku"]
 [ext_resource type="Texture2D" uid="uid://be682oqy7o4d4" path="res://assets/Knight_player/Walking_KG_1.png" id="6_6f162"]
 [ext_resource type="PackedScene" uid="uid://4cowisp4201s" path="res://scènes/HUD.tscn" id="6_g0ffq"]
+[ext_resource type="Texture2D" uid="uid://wqfqblf3sdgc" path="res://assets/background/background.jpg" id="10_6f162"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2ov3"]
 atlas = ExtResource("2_ojynp")
@@ -403,6 +404,13 @@ shape = SubResource("CapsuleShape2D_px5sl")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=768723707]
 position = Vector2(18, 57)
+zoom = Vector2(1.7, 1.7)
 
 [node name="hud" parent="." unique_id=1047693899 instance=ExtResource("6_g0ffq")]
 position = Vector2(17, 57)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1643127446]
+z_index = -300
+position = Vector2(79.99999, 39.999996)
+scale = Vector2(0.6791667, 0.6791667)
+texture = ExtResource("10_6f162")
