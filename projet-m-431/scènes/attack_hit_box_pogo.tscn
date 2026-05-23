@@ -3,19 +3,58 @@
 [ext_resource type="Script" uid="uid://bsbdsbxq7moy2" path="res://script/attack_hit_box.gd" id="1_8wt42"]
 [ext_resource type="Texture2D" uid="uid://bta4fv7mvkrl8" path="res://assets/Knight_player/attack_hit_box2.png" id="1_s4ier"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu8rs"]
+atlas = ExtResource("1_s4ier")
+region = Rect2(30, 0, 30, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wt42"]
+atlas = ExtResource("1_s4ier")
+region = Rect2(0, 0, 120, 71)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bu8rs"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_bu8rs")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_bu8rs")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8wt42")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8wt42")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_8wt42")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_bu8rs")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_bu8rs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 20.0
+}]
+
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_s4ier"]
-points = PackedVector2Array(10, 23, 27, 15, 37, 1, 37, -20, 28, -36, 24, -10, 16, 1, 0, 6, -16, 1, -24, -10, -28, -36, -37, -20, -37, -1, -27, 15, -10, 23)
+points = PackedVector2Array(10, 22, 27, 14, 36, 0, 36, -13, 31, -17, 24, -10, 16, 1, 0, 6, -16, 1, -24, -10, -31, -17, -36, -13, -36, 0, -27, 14, -10, 22)
 
 [node name="attack_hit_box_pogo" type="Area2D" unique_id=1767159209]
 script = ExtResource("1_8wt42")
 is_pogo = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2014662303]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1534008193]
 scale = Vector2(0.71250004, 1)
-texture = ExtResource("1_s4ier")
+sprite_frames = SubResource("SpriteFrames_bu8rs")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1362299576]
 shape = SubResource("ConvexPolygonShape2D_s4ier")
+disabled = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -2,9 +2,10 @@ extends CharacterBody2D
 # l'attaque dois etre débloquer au niveau 1
 # le dash (slide) devrait etre débloquer au niveau 2
 const SPEED = 300.0
+const KNOCKBACK = 600.0
 const JUMP_VELOCITY = -430.0
 const DOUBLE_JUMP_VELOCITY = -430.0
-const POGO_VELOCITY = -350.0
+const POGO_VELOCITY = -400.0
 const ATTACK_DURATION = 0.3
 const SLIDE_SPEED = 600.0
 const SLIDE_DURATION = 0.3
@@ -12,10 +13,14 @@ const DRINK_DURATION = 0.3
 const START_POSITION = Vector2(94.0, -76.0)
 const ATTACK_HIT_BOX_SCENE = preload("res://scènes/attack_hit_box.tscn")
 const ATTACK_HIT_BOX_POGO_SCENE = preload("res://scènes/attack_hit_box_pogo.tscn")
+const INVULNERABLE_DURATION = 1.0
 @onready var sprite = $AnimatedSprite2D
+var is_invulnerable = false
 var is_attacking = false
+var hase_knockback = false
 var is_sliding = false
 var is_drinking = false
+var invulnerable_timer = 0.0
 var slide_direction = 0
 var slide_timer = 0.0
 var attack_timer = 0.0
@@ -55,19 +60,22 @@ func _physics_process(delta: float) -> void:
 		
 	if direction != 0 and not is_sliding and not is_drinking:
 		velocity.x = direction * SPEED
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	jump()
 
 	attack(delta)
-
+	
 	regen(delta)
 	
 	slide(delta)
 
 	# bouger
 	move_and_slide()
+	
+	couldown_invulnerable(delta)
 
 	animations(direction)
 
@@ -85,6 +93,9 @@ func jump():
 			emit_signal("double_jump")
 			
 func attack(delta):
+	if hase_knockback:
+		velocity.x = - last_direction * KNOCKBACK
+	hase_knockback = false
 	# Ne peut pas attaquer en slideant
 	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_sliding and not is_attacking and not is_drinking:
 		is_attacking = true
@@ -93,12 +104,13 @@ func attack(delta):
 			if Input.is_action_pressed("down") and not is_on_floor():
 				# instansier la hit-box
 				attack_hit_box = ATTACK_HIT_BOX_POGO_SCENE.instantiate()
-				attack_hit_box.connect("pogo", _pogo)
+				
 			else:
 				# instansier la hit-box
 				attack_hit_box = ATTACK_HIT_BOX_SCENE.instantiate()
 			# l'ajouter comme node enfant du niveau
 			add_child(attack_hit_box)
+			attack_hit_box.connect("touch", _touch)
 	
 	# Attack cooldown
 	if is_attacking:
@@ -107,7 +119,7 @@ func attack(delta):
 			end_attack()
 				
 		elif attack_hit_box != null:
-			attack_hit_box.get_node("Sprite2D").flip_h = last_direction < 0
+			attack_hit_box.get_node("AnimatedSprite2D").flip_h = last_direction < 0
 			# le repositionner en fonction de la position de la position et de la direction
 			if attack_hit_box.name == "attack_hit_box_pogo":
 				attack_hit_box.global_position = Vector2(global_position.x + 20, global_position.y + 80)
@@ -115,6 +127,7 @@ func attack(delta):
 				attack_hit_box.global_position = Vector2(global_position.x + 50, global_position.y + 50)
 			else:
 				attack_hit_box.global_position = Vector2(global_position.x - 10, global_position.y + 50)
+
 func end_attack():
 	is_attacking = false
 	if attack_hit_box != null:
@@ -191,19 +204,34 @@ func animations(direction):
 			sprite.play("idle")
 	
 func prendre_dega(number):
-	hp -= number
-	end_attack()
-	if hp <= 0:
-		hp = 0
-		dead()
+	if not is_invulnerable:
+		hp -= number
+		end_slide()
+		end_attack()
+		if hp <= 0:
+			hp = 0
+			dead()
+		is_invulnerable = true
+		invulnerable_timer = INVULNERABLE_DURATION
 
 func dead():
 	hp = 10
 	glass_number = 0
+	upgrade_level = 0
+	end_slide()
 	end_attack()
 	emit_signal("death")
 
-func _pogo():
-	velocity.y = POGO_VELOCITY
-	can_slide = true
-	can_double_jump = true
+func couldown_invulnerable(delta):
+	if is_invulnerable:
+		invulnerable_timer -= delta
+		if invulnerable_timer <= 0:
+			is_invulnerable = false
+
+func _touch(is_pogo):
+	if is_pogo:
+		velocity.y = POGO_VELOCITY
+		can_slide = true
+		can_double_jump = true
+	else:
+		hase_knockback = true

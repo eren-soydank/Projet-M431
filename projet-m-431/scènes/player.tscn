@@ -206,56 +206,56 @@ region = Rect2(600, 0, 100, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_r5wlx"]
 animations = [{
 "frames": [{
-"duration": 0.8,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_j2ov3")
 }, {
-"duration": 0.8,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_6f162")
 }, {
-"duration": 1.5,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_g0ffq")
 }, {
-"duration": 1.5,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_tq5ee")
 }, {
 "duration": 0.8,
 "texture": SubResource("AtlasTexture_mk5t5")
 }, {
-"duration": 0.8,
+"duration": 1.3,
 "texture": SubResource("AtlasTexture_kgfef")
 }, {
-"duration": 0.8,
+"duration": 1.3,
 "texture": SubResource("AtlasTexture_mtb7m")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 15.0
+"speed": 20.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_546ji")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_fo6dd")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_cmo3l")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_neffy")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_atnal")
 }, {
-"duration": 1.0,
+"duration": 1.3,
 "texture": SubResource("AtlasTexture_n3gf8")
 }, {
-"duration": 1.0,
+"duration": 1.3,
 "texture": SubResource("AtlasTexture_gdoun")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_pogo",
-"speed": 15.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -407,10 +407,10 @@ position = Vector2(18, 57)
 zoom = Vector2(1.7, 1.7)
 
 [node name="hud" parent="." unique_id=1047693899 instance=ExtResource("6_g0ffq")]
-position = Vector2(17, 57)
+position = Vector2(-353, -244)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1643127446]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1404206659]
 z_index = -300
-position = Vector2(79.99999, 39.999996)
-scale = Vector2(0.6791667, 0.6791667)
+position = Vector2(18.000013, 56.999977)
+scale = Vector2(0.5875, 0.7354167)
 texture = ExtResource("10_6f162")

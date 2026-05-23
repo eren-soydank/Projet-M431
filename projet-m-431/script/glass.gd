@@ -1,8 +1,5 @@
 extends Area2D
 
-# l'id dois etre le meme que dans son nom (ver1 etc) 
-# et que la cle dans le dictioneaire dans du niveau
-@export var id = 0
 # le nombre de ver ressu lor de la recuperation
 @export var number = 1
 
@@ -24,8 +21,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# si c'est un joueur
 	if body.name == "player":
-		print("Press Q or -")
 		# envoi un signal a main var la fonction _pick_up_glass
-		emit_signal("pick_up_glass", id, number)
+		emit_signal("pick_up_glass", number)
 		# ce supprime soi même
 		queue_free()

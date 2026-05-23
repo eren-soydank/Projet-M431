@@ -141,64 +141,64 @@ animations = [{
 script = ExtResource("1_863tq")
 
 [node name="glass0" type="AnimatedSprite2D" parent="." unique_id=186318211]
-position = Vector2(-529, -249)
+position = Vector2(-153, 19)
 sprite_frames = SubResource("SpriteFrames_gl1yg")
 animation = &"idle"
 frame_progress = 0.0375851
 
 [node name="Label0" type="Label" parent="." unique_id=1846897295]
-offset_left = -512.0
-offset_top = -263.0
-offset_right = -472.0
-offset_bottom = -240.0
+offset_left = -136.0
+offset_top = 5.0
+offset_right = -96.0
+offset_bottom = 28.0
 text = "x0"
 
 [node name="heart0" type="AnimatedSprite2D" parent="." unique_id=843922683]
-position = Vector2(-529, -286)
+position = Vector2(-153, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart1" type="AnimatedSprite2D" parent="." unique_id=601949040]
-position = Vector2(-495, -286)
+position = Vector2(-119, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart2" type="AnimatedSprite2D" parent="." unique_id=1202760647]
-position = Vector2(-461, -286)
+position = Vector2(-85, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart3" type="AnimatedSprite2D" parent="." unique_id=283951782]
-position = Vector2(-427, -286)
+position = Vector2(-51, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart4" type="AnimatedSprite2D" parent="." unique_id=896272801]
-position = Vector2(-393, -286)
+position = Vector2(-17, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart5" type="AnimatedSprite2D" parent="." unique_id=1441313780]
-position = Vector2(-359, -286)
+position = Vector2(17, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart6" type="AnimatedSprite2D" parent="." unique_id=1882564685]
-position = Vector2(-325, -286)
+position = Vector2(51, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart7" type="AnimatedSprite2D" parent="." unique_id=856614533]
-position = Vector2(-291, -286)
+position = Vector2(85, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart8" type="AnimatedSprite2D" parent="." unique_id=886119403]
-position = Vector2(-257, -286)
+position = Vector2(119, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart9" type="AnimatedSprite2D" parent="." unique_id=1325985377]
-position = Vector2(-223, -286)
+position = Vector2(153, -18)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"

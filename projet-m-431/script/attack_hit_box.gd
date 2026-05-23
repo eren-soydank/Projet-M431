@@ -1,33 +1,40 @@
 extends Area2D
 
+const HIT_BOX_START = 0.05
+const HIT_BOX_END = 0.17
+@onready var sprite = $AnimatedSprite2D
+@onready var hit_box = $CollisionShape2D
 @export var is_pogo = false
-var hase_pogo = false
+var hase_touch = false
+var attack_timer = 0.0
 
-signal pogo
+signal touch
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	sprite.play("idle")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
+	attack_timer += delta
+	if attack_timer >= HIT_BOX_START:
+		hit_box.disabled = false
+	if attack_timer >= HIT_BOX_END:
+		hit_box.disabled = true
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name.begins_with("breakable"):
 		body.domage(1)
-		_pogo()
-
+		_touch()
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name.begins_with("chest") and not area.is_oppened:
-		_pogo()
+		_touch()
 		area.oppen()
 	elif area.name.begins_with("spike"):
-		_pogo()
+		_touch()
 
-func _pogo():
-	if not hase_pogo and is_pogo:
-		hase_pogo = true
-		emit_signal("pogo")
+func _touch():
+	if not hase_touch:
+		hase_touch = true
+		emit_signal("touch", is_pogo)
