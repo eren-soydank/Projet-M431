@@ -97,7 +97,7 @@ func attack(delta):
 		velocity.x = - last_direction * KNOCKBACK
 	hase_knockback = false
 	# Ne peut pas attaquer en slideant
-	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_sliding and not is_attacking and not is_drinking:
+	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_attacking and not is_drinking:
 		is_attacking = true
 		attack_timer = ATTACK_DURATION
 		if attack_hit_box == null:

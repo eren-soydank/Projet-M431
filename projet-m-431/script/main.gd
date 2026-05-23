@@ -3,7 +3,7 @@ extends Node2D
 # le niveau actuel
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
-var curent_level = 3
+var curent_level = 4
 
 @onready var player = $player
 @onready var hud = $player/hud
@@ -12,8 +12,10 @@ var curent_level = 3
 
 # La fonction qui ce fait une foi au debut du jeu
 func _ready() -> void:
-	# player.upgrade_level = 2
-	# mettre le niveau (curent_level) 
+	
+	player.upgrade_level = 2
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# mettre le niveau (curent_level)
 	_changeLevel(curent_level)
 	# conecter les signaux de player au fonction
 	player.connect("use_glass", _use_glass)
@@ -27,8 +29,7 @@ func _process(delta: float) -> void:
 		_take_damage(1)
 		
 	if Input.is_action_just_pressed("quit"):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
-		#get_tree().quit()
+		get_tree().quit()
 
 func connect_objet():
 	for child in curent_scene_level.get_children():
