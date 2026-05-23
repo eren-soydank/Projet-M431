@@ -3,7 +3,7 @@ extends Node2D
 # le niveau actuel
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
-var curent_level = 1
+var curent_level = 3
 
 @onready var player = $player
 @onready var hud = $player/hud
@@ -67,6 +67,11 @@ func _changeLevel(level_destination):
 
 func tp(destination):
 	player.global_position = destination
+	player.last_direction = 1
+	player.end_slide()
+	player.end_attack()
+	player.velocity.x = 0
+	player.velocity.y = 0
 	player.last_direction = 1
 
 func _pick_up_glass(number):

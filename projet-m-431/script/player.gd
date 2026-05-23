@@ -206,8 +206,6 @@ func animations(direction):
 func prendre_dega(number):
 	if not is_invulnerable:
 		hp -= number
-		end_slide()
-		end_attack()
 		if hp <= 0:
 			hp = 0
 			dead()
@@ -218,8 +216,6 @@ func dead():
 	hp = 10
 	glass_number = 0
 	upgrade_level = 0
-	end_slide()
-	end_attack()
 	emit_signal("death")
 
 func couldown_invulnerable(delta):
