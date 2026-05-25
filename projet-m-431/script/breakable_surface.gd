@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+# la resistance du mur
 @export var pv = 4
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +13,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+# une fonction qui peut venir de attaque hit box pour le casser
 func domage(degat):
 	pv -= degat
 	if pv <= 0:
+		# ce detruit lui meme
 		queue_free()

@@ -1,19 +1,20 @@
 extends Node2D
 
-# le niveau actuel
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
-var curent_level = 4
+# le niveau actuel
+var curent_level = 1
 
+# le joueur
 @onready var player = $player
+# l'hud
 @onready var hud = $player/hud
 # initier la variable curent_scene_level
 @onready var curent_scene_level
 
 # La fonction qui ce fait une foi au debut du jeu
 func _ready() -> void:
-	
-	player.upgrade_level = 2
+	#player.upgrade_level = 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# mettre le niveau (curent_level)
 	_changeLevel(curent_level)
@@ -25,15 +26,18 @@ func _ready() -> void:
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
+	# si le joueur tomb trop on lui fait prendre un degat
 	if player.global_position.y >= 500:
 		_take_damage(1)
 		
+	# si on appuis sur quit (ESC) on qui le jeu
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
 func connect_objet():
+	# pour tous les objet du niveau
 	for child in curent_scene_level.get_children():
-		# commecter les porte a la fonction _changeLevel
+		# commecter les porte ouvertes a la fonction _changeLevel
 		if child.name.begins_with("door") and not child.is_connected("player_entred", _changeLevel) and not child.is_close:
 			child.connect("player_entred", _changeLevel)
 		# commecter les ver a la fonction _pick_up_glass
@@ -67,15 +71,20 @@ func _changeLevel(level_destination):
 	tp(player.START_POSITION)
 
 func tp(destination):
+	# teleporter le joueur
 	player.global_position = destination
+	# le faire regarder a droite
 	player.last_direction = 1
+	# lui faire finire sont slide
 	player.end_slide()
+	# lui faire finire sont attaque
 	player.end_attack()
+	# lui enlever sont elant
 	player.velocity.x = 0
 	player.velocity.y = 0
-	player.last_direction = 1
 
 func _pick_up_glass(number):
+	# donner une potion au joueur
 	player.glass_number += number
 	# met a jour le nombre afficher dans l'hud
 	hud.update_glass(player.glass_number)
