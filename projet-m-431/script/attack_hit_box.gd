@@ -1,7 +1,7 @@
 extends Area2D
 
 # le temp dirant lequelle la hit box est active
-const HIT_BOX_END = 0.15
+const HIT_BOX_END = 0.1
 # l'image
 @onready var sprite = $AnimatedSprite2D
 # la zone de colision
