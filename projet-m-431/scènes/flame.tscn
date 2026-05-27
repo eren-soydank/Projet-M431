@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dwll2006k4eqr"]
+
+[ext_resource type="Script" uid="uid://385kro85ik4l" path="res://script/spike.gd" id="1_shx3t"]
+[ext_resource type="Texture2D" uid="uid://1a6h5uijaejv" path="res://assets/Texture/TX FX Flame.png" id="2_siax5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xypmh"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xypmh"]
+atlas = ExtResource("2_siax5")
+region = Rect2(0, 133, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pijvs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xypmh")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="flame" type="Area2D" unique_id=1412894722]
+script = ExtResource("1_shx3t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1563954580]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_xypmh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=825599117]
+position = Vector2(0, -16)
+scale = Vector2(1.2272727, 1.2272727)
+sprite_frames = SubResource("SpriteFrames_pijvs")
+animation = &"idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

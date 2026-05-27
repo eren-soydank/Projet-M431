@@ -9,6 +9,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# repositionner l'hud en fonction de la tail de l'ecrant pour garder les coeur en haut a gauche
+	global_position.y += int((DisplayServer.screen_get_size().y -1080) /2)
+	global_position.x += int((DisplayServer.screen_get_size().x -1920) /2)
 	# on comance j'annimation du ver
 	glass.play("idle")
 	# pour tous les coeur 
