@@ -816,11 +816,7 @@ position = Vector2(1680, -16)
 [node name="spike25" parent="." unique_id=1214000389 instance=ExtResource("3_l2bqk")]
 position = Vector2(1712, -16)
 
-[node name="spike31" parent="." unique_id=2039542453 instance=ExtResource("3_l2bqk")]
-position = Vector2(1736, 144)
-rotation = 1.5707964
-
-[node name="spike32" parent="." unique_id=1426561752 instance=ExtResource("3_l2bqk")]
+[node name="spike26" parent="." unique_id=1426561752 instance=ExtResource("3_l2bqk")]
 position = Vector2(1776, 304)
 
 [node name="spike27" parent="." unique_id=1782906991 instance=ExtResource("3_l2bqk")]
@@ -866,27 +862,14 @@ rotation = -3.1415927
 position = Vector2(2064, 48)
 rotation = -3.1415927
 
-[node name="spike46" parent="." unique_id=687535308 instance=ExtResource("3_l2bqk")]
+[node name="spike40" parent="." unique_id=687535308 instance=ExtResource("3_l2bqk")]
 position = Vector2(1776, 208)
 rotation = 1.5707964
 
-[node name="spike48" parent="." unique_id=358287529 instance=ExtResource("3_l2bqk")]
+[node name="spike41" parent="." unique_id=358287529 instance=ExtResource("3_l2bqk")]
 position = Vector2(1744, -16)
 
-[node name="CollisionShape2D12" type="CollisionShape2D" parent="." unique_id=1632794940]
-position = Vector2(1968, 240)
-shape = SubResource("RectangleShape2D_mxkvv")
-
-[node name="spike50" parent="." unique_id=918594574 instance=ExtResource("3_l2bqk")]
-position = Vector2(2288, 208)
-
-[node name="spike51" parent="." unique_id=623870225 instance=ExtResource("3_l2bqk")]
-position = Vector2(2320, 208)
-
-[node name="spike52" parent="." unique_id=636218520 instance=ExtResource("3_l2bqk")]
-position = Vector2(2352, 208)
-
-[node name="spike53" parent="." unique_id=2119439185 instance=ExtResource("3_l2bqk")]
+[node name="spike45" parent="." unique_id=2119439185 instance=ExtResource("3_l2bqk")]
 position = Vector2(2384, 208)
 
 [node name="spike46" parent="." unique_id=1510689997 instance=ExtResource("3_l2bqk")]
@@ -1003,6 +986,15 @@ shape = SubResource("RectangleShape2D_btai6")
 position = Vector2(3232, 336)
 shape = SubResource("RectangleShape2D_btai6")
 
+
+[node name="CollisionShape2x1-3" type="CollisionShape2D" parent="." unique_id=407484561]
+position = Vector2(2848, 432)
+shape = SubResource("RectangleShape2D_btai6")
+
+[node name="CollisionShape2x1-4" type="CollisionShape2D" parent="." unique_id=1221361908]
+position = Vector2(3232, 336)
+shape = SubResource("RectangleShape2D_btai6")
+
 [node name="CollisionShape2x1-5" type="CollisionShape2D" parent="." unique_id=1858325215]
 position = Vector2(3232, 144)
 shape = SubResource("RectangleShape2D_btai6")
@@ -1079,10 +1071,10 @@ shape = SubResource("RectangleShape2D_0lmhc")
 position = Vector2(2736, 128)
 shape = SubResource("RectangleShape2D_0lmhc")
 
-[node name="CollisionShape2D21" type="CollisionShape2D" parent="." unique_id=1644530666]
-position = Vector2(3472, 80)
-shape = SubResource("RectangleShape2D_pwlbb")
-
-[node name="CollisionShape2D22" type="CollisionShape2D" parent="." unique_id=1726234086]
+[node name="CollisionShape1x10-2" type="CollisionShape2D" parent="." unique_id=1726234086]
 position = Vector2(3344, 256)
 shape = SubResource("RectangleShape2D_0lmhc")
+
+[node name="CollisionShape28x1-0" type="CollisionShape2D" parent="." unique_id=1617929971]
+position = Vector2(448, 16)
+shape = SubResource("RectangleShape2D_48hld")
