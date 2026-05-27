@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b3mb6tcaf8bgq" path="res://script/hud.gd" id="1_863tq"]
 [ext_resource type="Texture2D" uid="uid://d37oj4b7xehiu" path="res://assets/glass/glass_animation.png" id="2_wa3bo"]
 [ext_resource type="Texture2D" uid="uid://dl382yvo6gkpa" path="res://assets/heart/heart_animation.png" id="3_li0qm"]
+[ext_resource type="Texture2D" uid="uid://wqfqblf3sdgc" path="res://assets/background/background.jpg" id="4_2f8ua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2f8ua"]
 atlas = ExtResource("2_wa3bo")
@@ -140,65 +141,71 @@ animations = [{
 [node name="Node2D" type="Node2D" unique_id=1047693899]
 script = ExtResource("1_863tq")
 
+[node name="background" type="Sprite2D" parent="." unique_id=2052031100]
+z_index = -300
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_2f8ua")
+
 [node name="glass0" type="AnimatedSprite2D" parent="." unique_id=186318211]
-position = Vector2(-153, 19)
+position = Vector2(-530, -252)
 sprite_frames = SubResource("SpriteFrames_gl1yg")
 animation = &"idle"
 frame_progress = 0.0375851
 
 [node name="Label0" type="Label" parent="." unique_id=1846897295]
-offset_left = -136.0
-offset_top = 5.0
-offset_right = -96.0
-offset_bottom = 28.0
+offset_left = -513.0
+offset_top = -266.0
+offset_right = -473.0
+offset_bottom = -243.0
 text = "x0"
+metadata/_edit_use_anchors_ = true
 
 [node name="heart0" type="AnimatedSprite2D" parent="." unique_id=843922683]
-position = Vector2(-153, -18)
+position = Vector2(-530, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart1" type="AnimatedSprite2D" parent="." unique_id=601949040]
-position = Vector2(-119, -18)
+position = Vector2(-496, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart2" type="AnimatedSprite2D" parent="." unique_id=1202760647]
-position = Vector2(-85, -18)
+position = Vector2(-462, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart3" type="AnimatedSprite2D" parent="." unique_id=283951782]
-position = Vector2(-51, -18)
+position = Vector2(-428, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart4" type="AnimatedSprite2D" parent="." unique_id=896272801]
-position = Vector2(-17, -18)
+position = Vector2(-394, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart5" type="AnimatedSprite2D" parent="." unique_id=1441313780]
-position = Vector2(17, -18)
+position = Vector2(-360, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart6" type="AnimatedSprite2D" parent="." unique_id=1882564685]
-position = Vector2(51, -18)
+position = Vector2(-326, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart7" type="AnimatedSprite2D" parent="." unique_id=856614533]
-position = Vector2(85, -18)
+position = Vector2(-292, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart8" type="AnimatedSprite2D" parent="." unique_id=886119403]
-position = Vector2(119, -18)
+position = Vector2(-258, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
 
 [node name="heart9" type="AnimatedSprite2D" parent="." unique_id=1325985377]
-position = Vector2(153, -18)
+position = Vector2(-224, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"

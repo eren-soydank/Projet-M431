@@ -21,7 +21,7 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	# si le joueur est dans la porte et fait W
-	if is_player_in and Input.is_action_just_pressed("interact"):
+	if is_player_in and Input.is_action_pressed("interact"):
 		# envoi un signale a main ver la fonction _changeLevel
 		emit_signal("player_entred", level_destination)
 

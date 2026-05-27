@@ -21,7 +21,7 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	# si un joueur est en colision avec lui et qu'il appui sur W
-	if Input.is_action_just_pressed("interact") and is_player_in:
+	if Input.is_action_pressed("interact") and is_player_in:
 		oppen()
 
 # quand un obget renre en colision avec lui

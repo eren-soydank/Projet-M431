@@ -93,14 +93,12 @@ z_index = -3
 script = ExtResource("1_adx53")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2012466298]
-position = Vector2(-7, -16)
 sprite_frames = SubResource("SpriteFrames_laxyt")
 animation = &"closing"
 frame = 7
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2136920857]
-position = Vector2(-7, -16)
 shape = SubResource("RectangleShape2D_1i6g8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

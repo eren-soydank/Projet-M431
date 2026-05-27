@@ -699,11 +699,11 @@ position = Vector2(432, -48)
 number = 10
 
 [node name="door0" parent="." unique_id=1629297423 instance=ExtResource("4_7ahcd")]
-position = Vector2(119, -48)
+position = Vector2(112, -64)
 is_close = true
 
 [node name="door1" parent="." unique_id=458783099 instance=ExtResource("4_7ahcd")]
-position = Vector2(1815, 176)
+position = Vector2(1808, 160)
 level_destination = 3
 
 [node name="spike0" parent="." unique_id=1605946225 instance=ExtResource("5_j8amr")]

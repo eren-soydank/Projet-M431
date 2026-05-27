@@ -3,7 +3,7 @@ extends Node2D
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
 # le niveau actuel
-var curent_level = 4
+var curent_level = 5
 
 # le joueur
 @onready var player = $player
@@ -46,7 +46,7 @@ func connect_objet():
 		elif child.name.begins_with("glass") and not child.is_connected("pick_up_glass", _pick_up_glass):
 			child.connect("pick_up_glass", _pick_up_glass)
 		# commecter les pic a la fonction _take_damage
-		elif child.name.begins_with("spike") and not child.is_connected("take_damage", _take_damage):
+		elif (child.name.begins_with("spike") or child.name.begins_with("flame")) and not child.is_connected("take_damage", _take_damage):
 			child.connect("take_damage", _take_damage)
 		# commecter les chest a la fonction _oppen_chest
 		elif child.name.begins_with("chest") and not child.is_connected("oppen_chest", _oppen_chest):
@@ -77,8 +77,8 @@ func tp(destination):
 	player.global_position = destination
 	# le faire regarder a droite
 	player.last_direction = 1
-	# lui faire finire sont slide
-	player.end_slide()
+	# lui faire finire sont dash
+	player.end_dash()
 	# lui faire finire sont attaque
 	player.end_attack()
 	# lui enlever sont elant
@@ -142,4 +142,4 @@ func _double_jump():
 	# l'ajouter comme node enfant du niveau
 	add_child(double_jump_pad)
 	# le repositionner en fonction de la position du joueur
-	double_jump_pad.global_position = Vector2(player.global_position.x + 10, player.global_position.y + 90)
+	double_jump_pad.global_position = Vector2(player.global_position.x, player.global_position.y + 37)

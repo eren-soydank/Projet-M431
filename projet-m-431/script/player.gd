@@ -7,10 +7,10 @@ const JUMP_VELOCITY = -430.0
 const DOUBLE_JUMP_VELOCITY = -430.0
 const POGO_VELOCITY = -400.0
 const ATTACK_DURATION = 0.3
-const SLIDE_SPEED = 600.0
-const SLIDE_DURATION = 0.3
+const DASH_SPEED = 600.0
+const DASH_DURATION = 0.3
 const DRINK_DURATION = 0.3
-const START_POSITION = Vector2(94.0, -76.0)
+const START_POSITION = Vector2(112.0, -24.0)
 const ATTACK_HIT_BOX_SCENE = preload("res://scènes/attack_hit_box.tscn")
 const ATTACK_HIT_BOX_POGO_SCENE = preload("res://scènes/attack_hit_box_pogo.tscn")
 const INVULNERABLE_DURATION = 1.0
@@ -22,10 +22,10 @@ var hase_knockback = false
 var is_sliding = false
 var is_drinking = false
 var invulnerable_timer = 0.0
-var slide_timer = 0.0
+var dash_timer = 0.0
 var attack_timer = 0.0
 var drink_timer = 0.0
-var can_slide = true
+var can_dash = true
 var glass_number = 0
 var hp = 10
 var last_direction = 1.0
@@ -41,17 +41,12 @@ signal double_jump
 
 # recupérer les sous nodes importants
 @onready var sprite = $AnimatedSprite2D
+
 func _physics_process(delta: float) -> void:
-	
-	# detection de mur
-	if is_on_wall():
-		wall_direction = -sign(get_wall_normal().x)
-	else:
-		wall_direction = 0
 	
 	# si il est sur le sol
 	if is_on_floor():
-		can_slide = true
+		can_dash = true
 		can_double_jump = true
 	# si non
 	else:
@@ -70,6 +65,17 @@ func _physics_process(delta: float) -> void:
 		# le faire perdre doucement de la vitesse
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
+	# detection de mur
+	if is_on_wall():
+		wall_direction = -sign(get_wall_normal().x)
+		if upgrade_level >= 3:
+			can_dash = true
+			can_double_jump = true
+			if not is_on_floor() and not is_sliding:
+				last_direction = - wall_direction
+	else:
+		wall_direction = 0
+	
 	# detection du saut
 	jump()
 	
@@ -79,8 +85,8 @@ func _physics_process(delta: float) -> void:
 	# detection de la regénération
 	regen(delta)
 	
-	# detection des slides
-	slide(delta)
+	# detection des dash
+	dash(delta)
 
 	# la fonction du système qui gère les mouvements et la vitesse
 	move_and_slide()
@@ -101,7 +107,9 @@ func jump():
 		elif can_double_jump:
 			velocity.y = DOUBLE_JUMP_VELOCITY
 			# pour qu'il ne puisse pas double sauter plusieur fois sant toucher le sol
-			can_double_jump = false
+			if not is_on_floor() and (wall_direction == 0 or upgrade_level < 3):
+				can_double_jump = false
+				
 			# juste pour que l'animation de saut ce refasse
 			# pour eviter que ca interompe une autre animation
 			if sprite.animation == "jump":
@@ -146,11 +154,11 @@ func attack(delta):
 			
 			# le repositionner en fonction de la position de la position et de la direction
 			if attack_hit_box.name == "attack_hit_box_pogo":
-				attack_hit_box.global_position = Vector2(global_position.x + 20, global_position.y + 80)
+				attack_hit_box.global_position = Vector2(global_position.x, global_position.y + 27)
 			elif last_direction == 1:
-				attack_hit_box.global_position = Vector2(global_position.x + 50, global_position.y + 50)
+				attack_hit_box.global_position = Vector2(global_position.x + 30, global_position.y - 3)
 			else:
-				attack_hit_box.global_position = Vector2(global_position.x - 10, global_position.y + 50)
+				attack_hit_box.global_position = Vector2(global_position.x - 30, global_position.y - 3)
 
 func end_attack():
 	is_attacking = false
@@ -179,28 +187,29 @@ func regen(delta):
 		if drink_timer <= 0:
 			is_drinking = false
 	
-func slide(delta):
-	# si on peut slide
-	if Input.is_action_just_pressed("slide") and upgrade_level >= 2 and not is_sliding and not is_drinking and can_slide:
-		# si il n'as pas commancer le slide sur le sol il ne peut plus slide tant qu'il n'est plus sur le sol
-		if not is_on_floor():
-			can_slide = false
+func dash(delta):
+	# si on peut dash
+	if Input.is_action_just_pressed("dash") and upgrade_level >= 2 and not is_sliding and not is_drinking and can_dash:
+		# si il n'as pas commancer le dash sur le sol il ne peut plus dash tant qu'il n'est plus sur le sol
+		if not is_on_floor() and (wall_direction == 0 or upgrade_level < 3):
+			can_dash = false
+
 		is_sliding = true
 		
-		# commancer le timer du slide
-		slide_timer = SLIDE_DURATION
+		# commancer le timer du dash
+		dash_timer = DASH_DURATION
 	
-	# slide cooldown
+	# dash cooldown
 	if is_sliding:
-		slide_timer -= delta
-		# si le timer est fini ou que l'on ce prend un mur on stop le slide
-		if slide_timer <= 0 or wall_direction == last_direction:
-			end_slide()
+		dash_timer -= delta
+		# si le timer est fini ou que l'on ce prend un mur on stop le dash
+		if dash_timer <= 0 or wall_direction == last_direction:
+			end_dash()
 		else:
 			velocity.y = 0
-			velocity.x = last_direction * SLIDE_SPEED
+			velocity.x = last_direction * DASH_SPEED
 
-func end_slide():
+func end_dash():
 	is_sliding = false
 	
 func couldown_invulnerable(delta):
@@ -212,10 +221,10 @@ func couldown_invulnerable(delta):
 func animations(direction):
 	sprite.flip_h = last_direction < 0
 		
-	# Priorité d'animation: slide > attack > drinking > jump > walk et idle
+	# Priorité d'animation: dash > attack > drinking > jump > walk et idle
 	if is_sliding:
-		if sprite.animation != "slide":
-			sprite.play("slide")
+		if sprite.animation != "dash":
+			sprite.play("dash")
 		return
 
 	if is_attacking:
@@ -273,7 +282,7 @@ func _touch(is_pogo):
 		# rebondit
 		velocity.y = POGO_VELOCITY
 		# peut re-silide et double sauter
-		can_slide = true
+		can_dash = true
 		can_double_jump = true
 	# si c'est une attaque normal il y a un léger recule
 	else:
