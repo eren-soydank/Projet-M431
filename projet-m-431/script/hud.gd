@@ -6,18 +6,26 @@ extends Node2D
 @onready var glass = $glass0
 # on recupere le text
 @onready var label = $Label0
+@onready var background = $background0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: 
 	# repositionner l'hud en fonction de la tail de l'ecrant pour garder les coeur en haut a gauche
-	global_position.y -= int((DisplayServer.screen_get_size().y -1080) /4)
-	global_position.x += int((DisplayServer.screen_get_size().x -1920) /4)
+	background.scale.x = int(max(DisplayServer.screen_get_size().x / 1920, DisplayServer.screen_get_size().y / 1080))
+	background.scale.y = int(max(DisplayServer.screen_get_size().x / 1920, DisplayServer.screen_get_size().y / 1080))
+	
 	# on comance j'annimation du ver
 	glass.play("idle")
+	glass.global_position.x -= int((DisplayServer.screen_get_size().x -1920) /4)
+	glass.global_position.y -= int((DisplayServer.screen_get_size().y -1080) /4)
+	label.global_position.x -= int((DisplayServer.screen_get_size().x -1920) /4)
+	label.global_position.y -= int((DisplayServer.screen_get_size().y -1080) /4)
 	# pour tous les coeur 
 	for heart in hearts:
 		# lance l'animation d'apparaitre
 		heart.play("appear")
+		heart.global_position.x -= int((DisplayServer.screen_get_size().x -1920) /4)
+		heart.global_position.y -= int((DisplayServer.screen_get_size().y -1080) /4)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")

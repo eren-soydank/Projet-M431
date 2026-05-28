@@ -3,7 +3,7 @@ extends Node2D
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
 # le niveau actuel
-var curent_level = 1
+var curent_level = 6
 
 # le joueur
 @onready var player = $player
@@ -23,7 +23,8 @@ func _ready() -> void:
 	# conecter les signaux de player au fonction
 	player.connect("use_glass", _use_glass)
 	player.connect("death", _death)
-	player.connect("double_jump", _double_jump)
+	player.connect("double_jump_signal", _double_jump)
+	player.connect("wall_jumped", _wall_jumped)
 
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
@@ -77,13 +78,15 @@ func tp(destination):
 	player.global_position = destination
 	# le faire regarder a droite
 	player.last_direction = 1
-	# lui faire finire sont dash
+	# lui faire finire sont slide
 	player.end_dash()
 	# lui faire finire sont attaque
 	player.end_attack()
 	# lui enlever sont elant
 	player.velocity.x = 0
 	player.velocity.y = 0
+	# reset le wall slide au cas ou le joueur etait en train de wall slide
+	player.is_wall_sliding = false
 
 func _pick_up_glass(number):
 	# donner une potion au joueur
@@ -124,7 +127,6 @@ func _oppen_chest(chest, objet_name):
 	# l'instansier
 	var object = objet.instantiate()
 	# l'ajouter comme node enfant du niveau
-
 	curent_scene_level.add_child(object)
 	# le tp au dessu du cofre
 	object.position.x = chest.position.x
@@ -142,4 +144,8 @@ func _double_jump():
 	# l'ajouter comme node enfant du niveau
 	add_child(double_jump_pad)
 	# le repositionner en fonction de la position du joueur
-	double_jump_pad.global_position = Vector2(player.global_position.x, player.global_position.y + 37)
+	double_jump_pad.global_position = Vector2(player.global_position.x, player.global_position.y + 40)
+
+func _wall_jumped():
+	# optionnel: spawner des particules, jouer un son, etc.
+	pass

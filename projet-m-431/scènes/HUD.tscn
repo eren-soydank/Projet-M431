@@ -141,7 +141,7 @@ animations = [{
 [node name="Node2D" type="Node2D" unique_id=1047693899]
 script = ExtResource("1_863tq")
 
-[node name="background" type="Sprite2D" parent="." unique_id=2052031100]
+[node name="background0" type="Sprite2D" parent="." unique_id=2052031100]
 z_index = -300
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_2f8ua")
