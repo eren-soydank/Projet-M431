@@ -67,12 +67,13 @@ func _physics_process(delta: float) -> void:
 	
 	# detection de mur
 	if is_on_wall():
+		# wall_direction est la direction du mur que l'on touche actiellement actuel 1 pour droite, -1 pour gauche 0 pour auqu'un mur
 		wall_direction = -sign(get_wall_normal().x)
-		if upgrade_level >= 3:
+		
+		if upgrade_level >= 3 and not is_on_floor() and not is_sliding:
 			can_dash = true
 			can_double_jump = true
-			if not is_on_floor() and not is_sliding:
-				last_direction = - wall_direction
+			last_direction = -wall_direction
 	else:
 		wall_direction = 0
 	
@@ -107,7 +108,7 @@ func jump():
 		elif can_double_jump:
 			velocity.y = DOUBLE_JUMP_VELOCITY
 			# pour qu'il ne puisse pas double sauter plusieur fois sant toucher le sol
-			if not is_on_floor() and (wall_direction == 0 or upgrade_level < 3):
+			if not is_on_floor():
 				can_double_jump = false
 				
 			# juste pour que l'animation de saut ce refasse
@@ -191,9 +192,9 @@ func dash(delta):
 	# si on peut dash
 	if Input.is_action_just_pressed("dash") and upgrade_level >= 2 and not is_sliding and not is_drinking and can_dash:
 		# si il n'as pas commancer le dash sur le sol il ne peut plus dash tant qu'il n'est plus sur le sol
-		if not is_on_floor() and (wall_direction == 0 or upgrade_level < 3):
+		if not is_on_floor() and (not is_on_wall() or upgrade_level < 3):
 			can_dash = false
-
+			
 		is_sliding = true
 		
 		# commancer le timer du dash

@@ -895,10 +895,10 @@ position = Vector2(1936, -232)
 position = Vector2(1872, -136)
 
 [node name="flame19" parent="." unique_id=1969394220 instance=ExtResource("6_tm25w")]
-position = Vector2(1936, -424)
+position = Vector2(1904, -456)
 
 [node name="flame26" parent="." unique_id=434443313 instance=ExtResource("6_tm25w")]
-position = Vector2(1872, -520)
+position = Vector2(1904, -584)
 
 [node name="spike12" parent="." unique_id=1602524367 instance=ExtResource("5_p4s6g")]
 position = Vector2(1232, -624)
@@ -948,3 +948,9 @@ shape = SubResource("RectangleShape2D_7ifp8")
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="." unique_id=1373888165]
 position = Vector2(1776, -560)
 shape = SubResource("RectangleShape2D_njwt6")
+
+[node name="flame30" parent="." unique_id=625191575 instance=ExtResource("6_tm25w")]
+position = Vector2(1936, -456)
+
+[node name="flame31" parent="." unique_id=1229803400 instance=ExtResource("6_tm25w")]
+position = Vector2(1872, -584)
