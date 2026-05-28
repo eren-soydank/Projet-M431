@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://mfsi2htcgyek" path="res://assets/Knight_player/Rolling_KG_1.png" id="5_s4tku"]
 [ext_resource type="Texture2D" uid="uid://be682oqy7o4d4" path="res://assets/Knight_player/Walking_KG_1.png" id="6_6f162"]
 [ext_resource type="PackedScene" uid="uid://4cowisp4201s" path="res://scènes/HUD.tscn" id="6_g0ffq"]
+[ext_resource type="Texture2D" uid="uid://cep4qmqinc4sa" path="res://assets/Knight_player/Grab_idle_KG_1.png" id="10_6f162"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2ov3"]
 atlas = ExtResource("2_ojynp")
@@ -202,6 +203,18 @@ region = Rect2(500, 0, 100, 64)
 atlas = ExtResource("6_6f162")
 region = Rect2(600, 0, 100, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnyjc"]
+atlas = ExtResource("10_6f162")
+region = Rect2(0, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vewap"]
+atlas = ExtResource("10_6f162")
+region = Rect2(100, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o0as"]
+atlas = ExtResource("10_6f162")
+region = Rect2(200, 0, 100, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_r5wlx"]
 animations = [{
 "frames": [{
@@ -353,7 +366,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_onl7t")
 }],
-"loop": false,
+"loop": true,
 "name": &"jump",
 "speed": 6.0
 }, {
@@ -382,6 +395,20 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnyjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vewap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o0as")
+}],
+"loop": true,
+"name": &"wall_jump",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px5sl"]
