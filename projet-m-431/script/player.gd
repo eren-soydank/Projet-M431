@@ -192,6 +192,7 @@ func dash(delta):
 	# si on peut dash
 	if Input.is_action_just_pressed("dash") and upgrade_level >= 2 and not is_sliding and not is_drinking and can_dash:
 		# si il n'as pas commancer le dash sur le sol il ne peut plus dash tant qu'il n'est plus sur le sol
+
 		if not is_on_floor() and (not is_on_wall() or upgrade_level < 3):
 			can_dash = false
 			
