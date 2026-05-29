@@ -216,7 +216,7 @@ func dash(delta):
 		else:
 			velocity.y = 0
 			velocity.x = last_direction * DASH_SPEED
-      
+	  
 func end_dash():
 	is_sliding = false
 
