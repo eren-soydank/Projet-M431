@@ -27,6 +27,7 @@ var has_knockback = false
 var is_sliding = false # dash
 var is_wall_sliding = false
 var is_drinking = false
+var has_knockback = false
 
 var invulnerable_timer = 0.0
 var dash_timer = 0.0
@@ -64,6 +65,15 @@ func _physics_process(delta: float) -> void:
 		is_wall_sliding = false
 
 	var direction := Input.get_axis("move_left", "move_right")
+	
+	# on met a jour la direction que si il peut bouger
+	if direction != 0 and not is_sliding and not is_drinking:
+		last_direction = direction
+		# le faire bouger
+		velocity.x = direction * SPEED
+	else:
+		# le faire perdre doucement de la vitesse
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# HORIZONTAL MOVE (FIXED: no ground sliding)
 	if not is_sliding and not is_drinking:
@@ -124,6 +134,13 @@ func jump():
 			can_double_jump = false
 			emit_signal("double_jump")
 
+		# envoi un signal à main pour faire aparaitre le nuage
+		emit_signal("double_jump_signal")
+		
+# ---------------- WALL JUMP ----------------
+func wall_jump(delta):
+	if Input.is_action_just_pressed("jump") and is_wall_sliding:
+		velocity.y = WALL_JUMP_VELOCITY
 
 # ---------------- ATTACK ----------------
 func attack(delta):
