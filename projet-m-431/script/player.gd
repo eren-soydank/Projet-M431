@@ -273,9 +273,8 @@ func animations(direction):
 				sprite.play("attack_pogo")
 			else:
 				sprite.play("attack")
-		return
-
-	if is_drinking:
+			
+	elif is_drinking:
 		if sprite.animation != "drinking":
 			sprite.play("drinking")
 		return
