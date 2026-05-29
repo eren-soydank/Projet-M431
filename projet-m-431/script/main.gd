@@ -16,23 +16,15 @@ var curent_level = 5
 func _ready() -> void:
 	# cette ligne sert uniquemment a tester n'importe quelle niveau sans avoir des problèmes avec les capacitées de déplacement
 	player.upgrade_level = max(curent_level - 3, 0)
-<<<<<<< HEAD
-	player.upgrade_level = 4
+	player.upgrade_level = 3
 	
-=======
-	player.upgrade_level = 5
->>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# mettre le niveau (curent_level)
 	_changeLevel(curent_level)
 	# conecter les signaux de player au fonction
 	player.connect("use_glass", _use_glass)
 	player.connect("death", _death)
-<<<<<<< HEAD
 	player.connect("double_jump_signal", _double_jump)
-=======
-	player.connect("double_jump", _double_jump)
->>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 	player.connect("wall_jumped", _wall_jumped)
 
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
@@ -56,7 +48,7 @@ func connect_objet():
 		elif child.name.begins_with("glass") and not child.is_connected("pick_up_glass", _pick_up_glass):
 			child.connect("pick_up_glass", _pick_up_glass)
 		# commecter les pic a la fonction _take_damage
-		elif child.name.begins_with("spike") and not child.is_connected("take_damage", _take_damage):
+		elif (child.name.begins_with("spike") or child.name.begins_with("flame")) and not child.is_connected("take_damage", _take_damage):
 			child.connect("take_damage", _take_damage)
 		# commecter les chest a la fonction _oppen_chest
 		elif child.name.begins_with("chest") and not child.is_connected("oppen_chest", _oppen_chest):
@@ -153,11 +145,7 @@ func _double_jump():
 	# l'ajouter comme node enfant du niveau
 	add_child(double_jump_pad)
 	# le repositionner en fonction de la position du joueur
-<<<<<<< HEAD
 	double_jump_pad.global_position = Vector2(player.global_position.x, player.global_position.y + 40)
-=======
-	double_jump_pad.global_position = Vector2(player.global_position.x + 10, player.global_position.y + 90)
->>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 
 func _wall_jumped():
 	# optionnel: spawner des particules, jouer un son, etc.
