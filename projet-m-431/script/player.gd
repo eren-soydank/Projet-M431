@@ -23,10 +23,10 @@ const ATTACK_HIT_BOX_POGO_SCENE = preload("res://scènes/attack_hit_box_pogo.tsc
 # VARIABLES
 var is_invulnerable = false
 var is_attacking = false
-var has_knockback = false
 var is_sliding = false # dash
 var is_wall_sliding = false
 var is_drinking = false
+var has_knockback = false
 
 var invulnerable_timer = 0.0
 var dash_timer = 0.0
@@ -37,8 +37,9 @@ var can_dash = true
 var can_double_jump = true
 var glass_number = 0
 var hp = 10
-var last_direction = 1.0
 var upgrade_level = 0
+
+var last_direction = 1.0
 var wall_direction = 0
 
 var attack_hit_box = null
@@ -78,7 +79,6 @@ func _physics_process(delta: float) -> void:
 		wall_direction = -sign(get_wall_normal().x)
 
 		if upgrade_level >= 3 and not is_sliding and not is_on_floor():
-
 			is_wall_sliding = true
 			last_direction = -wall_direction
 			velocity.y = min(velocity.y, WALL_SLIDE_SPEED)
@@ -101,10 +101,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
 	couldown_invulnerable(delta)
 	animations(direction)
-	
 	
 # ---------------- JUMP ----------------
 func jump():
@@ -139,7 +137,6 @@ func attack(delta):
 	has_knockback = false
 
 	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_attacking and not is_drinking:
-
 
 		is_attacking = true
 		attack_timer = ATTACK_DURATION
@@ -209,6 +206,7 @@ func dash(delta):
 
 		if not is_on_floor() and wall_direction == 0:
 			can_dash = false
+
 	if is_sliding:
 
 		dash_timer -= delta
@@ -218,9 +216,7 @@ func dash(delta):
 		else:
 			velocity.y = 0
 			velocity.x = last_direction * DASH_SPEED
-
-
-
+      
 func end_dash():
 	is_sliding = false
 
@@ -254,9 +250,8 @@ func animations(direction):
 	if is_drinking:
 		if sprite.animation != "drinking":
 			sprite.play("drinking")
-		return
 
-	if not is_on_floor():
+	elif not is_on_floor():
 		if sprite.animation != "jump":
 			sprite.play("jump")
 		return
