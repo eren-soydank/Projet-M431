@@ -27,13 +27,11 @@ var is_sliding = false # dash
 var is_wall_sliding = false
 var is_drinking = false
 var has_knockback = false
-var is_wall_jump = false
 
 var invulnerable_timer = 0.0
 var dash_timer = 0.0
 var attack_timer = 0.0
 var drink_timer = 0.0
-var wall_jump_timer = 0.0
 
 var can_dash = true
 var can_double_jump = true
@@ -65,8 +63,6 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_axis("move_left", "move_right")
 	
-	if is_wall_jump:
-		direction = last_direction
 	# on met a jour la direction que si il peut bouger
 	if direction != 0 and not is_sliding and not is_drinking:
 		last_direction = direction
@@ -129,13 +125,6 @@ func double_jump():
 func wall_jump(delta):
 	if Input.is_action_just_pressed("jump") and is_wall_sliding:
 		velocity.y = WALL_JUMP_VELOCITY
-		wall_jump_timer = WALL_JUMP_DURATION
-		is_wall_jump = true
-	
-	if is_wall_jump:
-		wall_jump_timer -= delta
-		if wall_jump_timer <= 0:
-			is_wall_jump = false
 
 # ---------------- ATTACK ----------------
 func attack(delta):
