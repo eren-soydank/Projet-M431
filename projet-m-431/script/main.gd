@@ -16,6 +16,7 @@ var curent_level = 5
 func _ready() -> void:
 	# cette ligne sert uniquemment a tester n'importe quelle niveau sans avoir des problèmes avec les capacitées de déplacement
 	player.upgrade_level = max(curent_level - 3, 0)
+	player.upgrade_level = 4
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# mettre le niveau (curent_level)
