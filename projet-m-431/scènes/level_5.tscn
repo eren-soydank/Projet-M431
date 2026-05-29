@@ -891,8 +891,14 @@ position = Vector2(1936, -232)
 position = Vector2(1872, -136)
 
 [node name="flame19" parent="." unique_id=1969394220 instance=ExtResource("6_tm25w")]
-position = Vector2(1936, -424)
+position = Vector2(1904, -456)
 
+<<<<<<< HEAD
+=======
+[node name="flame26" parent="." unique_id=434443313 instance=ExtResource("6_tm25w")]
+position = Vector2(1904, -584)
+
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 [node name="spike12" parent="." unique_id=1602524367 instance=ExtResource("5_p4s6g")]
 position = Vector2(1232, -624)
 rotation = 3.1415927
@@ -946,6 +952,7 @@ rotation = 7.853982
 position = Vector2(1152, -672)
 shape = SubResource("RectangleShape2D_njwt6")
 
+<<<<<<< HEAD
 [node name="spike18" parent="." unique_id=402056057 instance=ExtResource("5_p4s6g")]
 position = Vector2(2000, -880)
 rotation = 3.1415927
@@ -1015,3 +1022,10 @@ rotation = 3.1415927
 [node name="spike36" parent="." unique_id=1660879546 instance=ExtResource("5_p4s6g")]
 position = Vector2(1968, -880)
 rotation = 3.1415927
+=======
+[node name="flame30" parent="." unique_id=625191575 instance=ExtResource("6_tm25w")]
+position = Vector2(1936, -456)
+
+[node name="flame31" parent="." unique_id=1229803400 instance=ExtResource("6_tm25w")]
+position = Vector2(1872, -584)
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8

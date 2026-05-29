@@ -1,13 +1,23 @@
 extends CharacterBody2D
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 # CONSTANTES
 const SPEED = 300.0
 const KNOCKBACK = 600.0
 const JUMP_VELOCITY = -430.0
 const DOUBLE_JUMP_VELOCITY = -430.0
+<<<<<<< HEAD
 const WALL_JUMP_VELOCITY = -430.0
 const WALL_SLIDE_SPEED = 130.0
 const WALL_JUMP_DURATION = 0.1
+=======
+const WALL_JUMP_VELOCITY_Y = -400.0
+const WALL_JUMP_VELOCITY_X = 280.0
+const WALL_SLIDE_SPEED = 60.0
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 const POGO_VELOCITY = -400.0
 const ATTACK_DURATION = 0.3
 const DASH_SPEED = 600.0
@@ -23,6 +33,10 @@ const ATTACK_HIT_BOX_POGO_SCENE = preload("res://scènes/attack_hit_box_pogo.tsc
 # VARIABLES
 var is_invulnerable = false
 var is_attacking = false
+<<<<<<< HEAD
+=======
+var has_knockback = false
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 var is_sliding = false # dash
 var is_wall_sliding = false
 var is_drinking = false
@@ -37,11 +51,21 @@ var can_dash = true
 var can_double_jump = true
 var glass_number = 0
 var hp = 10
+<<<<<<< HEAD
+=======
+
+var last_direction = 1.0
+var dash_direction = 1.0
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 var upgrade_level = 0
 
 var last_direction = 1.0
 var wall_direction = 0
 
+<<<<<<< HEAD
+=======
+var can_double_jump = true
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 var attack_hit_box = null
 
 # SIGNALS
@@ -60,6 +84,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		can_dash = true
 		can_double_jump = true
+<<<<<<< HEAD
+=======
+		is_wall_sliding = false
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 
 	var direction := Input.get_axis("move_left", "move_right")
 	
@@ -72,6 +100,7 @@ func _physics_process(delta: float) -> void:
 		# le faire perdre doucement de la vitesse
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+<<<<<<< HEAD
 
 	# detection de mur
 	if is_on_wall():
@@ -79,6 +108,25 @@ func _physics_process(delta: float) -> void:
 		wall_direction = -sign(get_wall_normal().x)
 
 		if upgrade_level >= 3 and not is_sliding and not is_on_floor():
+=======
+	# HORIZONTAL MOVE (FIXED: no ground sliding)
+	if not is_sliding and not is_drinking:
+		if direction != 0:
+			last_direction = direction
+			velocity.x = direction * SPEED
+		else:
+			if is_on_floor():
+				velocity.x = 0
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+
+	# WALL DETECTION (FIXED)
+	if is_on_wall() and not is_on_floor():
+		var normal = get_wall_normal()
+		wall_direction = -1 if normal.x > 0 else 1
+
+		if upgrade_level >= 3 and not is_sliding and not is_drinking:
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 			is_wall_sliding = true
 			last_direction = -wall_direction
 			velocity.y = min(velocity.y, WALL_SLIDE_SPEED)
@@ -86,6 +134,7 @@ func _physics_process(delta: float) -> void:
 			can_double_jump = true
 		else:
 			is_wall_sliding = false
+<<<<<<< HEAD
 			
 	else:
 		wall_direction = 0
@@ -95,11 +144,19 @@ func _physics_process(delta: float) -> void:
 	double_jump()
 	wall_jump(delta)
 
+=======
+	else:
+		wall_direction = 0
+		is_wall_sliding = false
+
+	jump()
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 	attack(delta)
 	regen(delta)
 	dash(delta)
 
 	move_and_slide()
+<<<<<<< HEAD
 
 	couldown_invulnerable(delta)
 	animations(direction)
@@ -117,6 +174,32 @@ func double_jump():
 		
 		if sprite.animation == "jump":
 			sprite.play("jump")
+=======
+
+	couldown_invulnerable(delta)
+	animations(direction)
+
+
+# ---------------- JUMP ----------------
+func jump():
+	if Input.is_action_just_pressed("jump") and not is_sliding and not is_drinking:
+
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+
+		elif upgrade_level >= 3 and wall_direction != 0:
+			velocity.y = WALL_JUMP_VELOCITY_Y
+			velocity.x = -wall_direction * WALL_JUMP_VELOCITY_X
+			last_direction = -wall_direction
+			can_double_jump = false
+			is_wall_sliding = false
+			emit_signal("double_jump")
+
+		elif can_double_jump:
+			velocity.y = DOUBLE_JUMP_VELOCITY
+			can_double_jump = false
+			emit_signal("double_jump")
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 
 		# envoi un signal à main pour faire aparaitre le nuage
 		emit_signal("double_jump_signal")
@@ -133,13 +216,21 @@ func attack(delta):
 		velocity.x = -last_direction * KNOCKBACK
 	has_knockback = false
 
+<<<<<<< HEAD
 	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_attacking and not is_drinking:
+=======
+	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_attacking and not is_drinking and not is_wall_sliding:
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 
 		is_attacking = true
 		attack_timer = ATTACK_DURATION
 
 		if attack_hit_box == null:
+<<<<<<< HEAD
 			if Input.is_action_pressed("down") and not is_on_floor() and not is_wall_sliding:
+=======
+			if Input.is_action_pressed("down") and not is_on_floor():
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 				attack_hit_box = ATTACK_HIT_BOX_POGO_SCENE.instantiate()
 			else:
 				attack_hit_box = ATTACK_HIT_BOX_SCENE.instantiate()
@@ -195,6 +286,7 @@ func regen(delta):
 func dash(delta):
 
 	if Input.is_action_just_pressed("dash") and upgrade_level >= 2 and not is_sliding and not is_drinking and can_dash:
+<<<<<<< HEAD
 		if not is_on_floor() and is_sliding:
 			can_dash = false
 			
@@ -204,15 +296,36 @@ func dash(delta):
 		if not is_on_floor() and wall_direction == 0:
 			can_dash = false
 
+=======
+
+		is_sliding = true
+		is_wall_sliding = false
+		dash_timer = DASH_DURATION
+
+		# FIX: correct dash direction
+		if is_on_wall() and not is_on_floor():
+			dash_direction = -wall_direction
+		else:
+			dash_direction = last_direction
+
+		if not is_on_floor() and wall_direction == 0:
+			can_dash = false
+
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 	if is_sliding:
 
 		dash_timer -= delta
 
+<<<<<<< HEAD
 		if dash_timer <= 0 or wall_direction == last_direction:
+=======
+		if dash_timer <= 0:
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 			end_dash()
 		else:
 			velocity.y = 0
-			velocity.x = last_direction * DASH_SPEED
+			velocity.x = dash_direction * DASH_SPEED
+
 
 
 func end_dash():
@@ -230,22 +343,42 @@ func couldown_invulnerable(delta):
 
 # ---------------- ANIMATIONS ----------------
 func animations(direction):
+<<<<<<< HEAD
 	sprite.flip_h = last_direction < 0
+=======
+
+	if is_wall_sliding:
+		sprite.flip_h = wall_direction > 0
+	else:
+		sprite.flip_h = last_direction < 0
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 
 	if is_sliding:
 		if sprite.animation != "dash":
 			sprite.play("dash")
 
+<<<<<<< HEAD
 	elif is_attacking:
+=======
+	if is_wall_sliding:
+		if sprite.animation != "wall_slide":
+			sprite.play("wall_slide")
+		return
+
+	if is_attacking:
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 		if attack_hit_box:
 			if attack_hit_box.name == "attack_hit_box_pogo":
 				sprite.play("attack_pogo")
 			else:
 				sprite.play("attack")
+<<<<<<< HEAD
 				
 	elif is_wall_sliding:
 		if sprite.animation != "wall_slide":
 			sprite.play("wall_slide")
+=======
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 			
 	elif is_drinking:
 		if sprite.animation != "drinking":
@@ -254,8 +387,14 @@ func animations(direction):
 	elif not is_on_floor():
 		if sprite.animation != "jump":
 			sprite.play("jump")
+<<<<<<< HEAD
 
 	elif direction != 0:
+=======
+		return
+
+	if direction != 0:
+>>>>>>> f6d98a230a8c3786cbfbf0a69ce7a75fbd678db8
 		sprite.play("walk")
 	else:
 		sprite.play("idle")
