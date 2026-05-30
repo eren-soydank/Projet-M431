@@ -79,19 +79,15 @@ func tp(destination):
 	player.global_position = destination
 	# le faire regarder a droite
 	player.last_direction = 1
-	# lui faire finire sont slide
+	# lui faire finire sont dash
 	player.end_dash()
 	# lui faire finire sont attaque
 	player.end_attack()
 	# lui enlever sont elant
 	player.velocity.x = 0
 	player.velocity.y = 0
-	# reset le wall slide au cas ou le joueur etait en train de wall slide
-	player.is_wall_sliding = false
 
 func _pick_up_glass(number):
-	# donner une potion au joueur
-	player.glass_number += number
 	# met a jour le nombre afficher dans l'hud
 	hud.update_glass(player.glass_number)
 
@@ -132,12 +128,8 @@ func _oppen_chest(chest, objet_name):
 	# le tp au dessu du cofre
 	object.position.x = chest.position.x
 	object.position.y = chest.position.y - 104
-	object.connect("pick_up_object", _pick_up_object)
-
-func _pick_up_object():
-	# augmante le niveau du joueur selon le niveau il pourra attaquer, dash etc
-	player.upgrade_level += 1
 	
+
 func _double_jump():
 	# chercher l'objet du nuage
 	# l'instansier
