@@ -4,13 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://bfu4as5aetl4y" path="res://assets/spike.png" id="2_xddbi"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_pwh2q"]
-points = PackedVector2Array(14, 16, -14, 16, 0, -14)
+points = PackedVector2Array(14, 16, -14, 16, 0, -12)
 
 [node name="spike" type="Area2D" unique_id=1605946225]
 position = Vector2(-1, 0)
 script = ExtResource("1_mhn5i")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1354420518]
+position = Vector2(-5.9604645e-08, 2.0000012)
+scale = Vector2(0.875, 0.87500006)
 texture = ExtResource("2_xddbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=12352364]
