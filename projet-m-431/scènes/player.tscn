@@ -345,7 +345,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 4.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -412,8 +412,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px5sl"]
-radius = 15.0
-height = 46.0
+radius = 12.0
+height = 44.0
 
 [node name="player" type="CharacterBody2D" unique_id=881065301]
 script = ExtResource("1_k1be4")
@@ -424,12 +424,11 @@ script = ExtResource("1_k1be4")
 position = Vector2(0, -5.9604645e-08)
 scale = Vector2(0.71875, 0.75)
 sprite_frames = SubResource("SpriteFrames_r5wlx")
-animation = &"drinking"
-frame = 6
-frame_progress = 1.0
+animation = &"wall_jump"
+frame_progress = 0.99518037
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166798208]
-position = Vector2(0, 1)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_px5sl")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=768723707]

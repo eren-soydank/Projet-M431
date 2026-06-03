@@ -296,7 +296,7 @@ func animations(direction):
 				sprite.play("attack")
 		return
 		
-	if was_on_wall and upgrade_level == 4:
+	if was_on_wall and upgrade_level >= 3:
 		sprite.flip_h = not sprite.flip_h
 		if sprite.animation != "wall_jump":
 			sprite.play("wall_jump")

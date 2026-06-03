@@ -3,7 +3,7 @@ extends Node2D
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
 # le niveau actuel
-var curent_level = 1
+var curent_level = 3
 
 # le joueur
 @onready var player = $player
