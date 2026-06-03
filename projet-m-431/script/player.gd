@@ -54,6 +54,7 @@ var attack_hit_box = null
 signal use_glass
 signal death
 signal double_jump_signal
+signal wall_jumped
 
 @onready var sprite = $AnimatedSprite2D
 
@@ -62,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	coyote(delta)
 	
 	# GRAVITY
-	if not was_on_floor:
+	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
 		can_dash = true
@@ -111,8 +112,8 @@ func _physics_process(delta: float) -> void:
 	couldown_invulnerable(delta)
 	animations(direction)
 	
+	
 func coyote(delta):
-	#print("\nis_on_floor() : ", is_on_floor(), " | was_on_floor : ", was_on_floor, " | coyote_floor_timer : ", coyote_floor_timer, "\n")
 	if was_on_floor:
 		coyote_floor_timer -= delta
 		if coyote_floor_timer <= 0:
@@ -131,15 +132,17 @@ func coyote(delta):
 		coyote_wall_timer = COYOTE_WALL_DURATION
 		was_on_wall = true
 	
+	
 # ---------------- JUMP ----------------
 func jump():
 	if Input.is_action_just_pressed("jump") and not is_dashing and not is_drinking and was_on_floor:
 		velocity.y = JUMP_VELOCITY
 		was_on_floor = false
 		
+		
 # ---------------- DOUBLE JUMP ----------------
 func double_jump():
-	if Input.is_action_just_pressed("jump") and upgrade_level >= 4 and not is_dashing and not was_on_floor and can_double_jump and not is_wall_sliding:
+	if Input.is_action_just_pressed("jump") and upgrade_level >= 4 and not is_dashing and not is_on_floor() and can_double_jump and not is_wall_sliding:
 		velocity.y = DOUBLE_JUMP_VELOCITY
 		can_double_jump = false
 		
@@ -148,20 +151,35 @@ func double_jump():
 
 		# envoi un signal à main pour faire aparaitre le nuage
 		emit_signal("double_jump_signal")
-		
+	
+	
 # ---------------- WALL JUMP ----------------
 func wall_jump(delta):
 	if Input.is_action_just_pressed("jump") and is_wall_sliding:
 		velocity.y = WALL_JUMP_VELOCITY
-		
-		if sprite.animation == "jump":
-			sprite.play("jump")
+		emit_signal("wall_jumped")
+
 
 # ---------------- ATTACK ----------------
 func attack(delta):
 	if has_knockback:
 		velocity.x = -last_direction * KNOCKBACK
 	has_knockback = false
+	
+	
+	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_attacking and not is_drinking:
+		is_attacking = true
+		attack_timer = ATTACK_DURATION
+
+		if attack_hit_box == null:
+			if Input.is_action_pressed("down") and not was_on_floor and not is_wall_sliding:
+				attack_hit_box = ATTACK_HIT_BOX_POGO_SCENE.instantiate()
+			else:
+				attack_hit_box = ATTACK_HIT_BOX_SCENE.instantiate()
+
+			add_child(attack_hit_box)
+			attack_hit_box.connect("touch", _touch)
+	
 	
 	if is_attacking:
 		attack_timer -= delta
@@ -180,26 +198,8 @@ func attack(delta):
 					attack_hit_box.global_position = global_position + Vector2(30, -3)
 				else:
 					attack_hit_box.global_position = global_position + Vector2(-30, -3)
-					
-	
-
-	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_attacking and not is_drinking:
-
-		is_attacking = true
-		attack_timer = ATTACK_DURATION
-
-		if attack_hit_box == null:
-			if Input.is_action_pressed("down") and not was_on_floor and not is_wall_sliding:
-				attack_hit_box = ATTACK_HIT_BOX_POGO_SCENE.instantiate()
-			else:
-				attack_hit_box = ATTACK_HIT_BOX_SCENE.instantiate()
-
-			add_child(attack_hit_box)
-			attack_hit_box.connect("touch", _touch)
 
 	
-
-
 func end_attack():
 	is_attacking = false
 	if attack_hit_box:
@@ -223,8 +223,6 @@ func regen(delta):
 		drink_timer = DRINK_DURATION
 
 	
-
-
 # ---------------- DASH (FIXED) ----------------
 func dash(delta):
 	if is_dashing:
@@ -245,7 +243,6 @@ func dash(delta):
 
 		if not was_on_floor and wall_direction == 0:
 			can_dash = false
-
 	
 	  
 func end_dash():
@@ -254,7 +251,6 @@ func end_dash():
 
 # ---------------- INVULNERABLE ----------------
 func couldown_invulnerable(delta):
-
 	if is_invulnerable:
 		invulnerable_timer -= delta
 		if invulnerable_timer <= 0:
@@ -277,10 +273,17 @@ func animations(direction):
 			else:
 				sprite.play("attack")
 		return
+		
+	if was_on_wall and upgrade_level == 4:
+		sprite.flip_h = not sprite.flip_h
+		if sprite.animation != "wall_jump":
+			sprite.play("wall_jump")
+		return
 			
 	if is_drinking:
 		if sprite.animation != "drinking":
 			sprite.play("drinking")
+		return
 
 	elif not was_on_floor:
 		if sprite.animation != "jump":
@@ -295,7 +298,6 @@ func animations(direction):
 
 # ---------------- DAMAGE ----------------
 func prendre_dega(number):
-
 	if not is_invulnerable:
 
 		hp -= number
@@ -317,7 +319,6 @@ func dead():
 
 # ---------------- POGO / HIT ----------------
 func _touch(is_pogo):
-
 	if is_pogo:
 		velocity.y = POGO_VELOCITY
 		can_dash = true
