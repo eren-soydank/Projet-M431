@@ -16,6 +16,7 @@ const DRINK_DURATION = 0.3
 const INVULNERABLE_DURATION = 1.0
 const COYOTE_FLOOR_DURATION = 0.1
 const COYOTE_WALL_DURATION = 0.1
+const BUFFERING_TIME = 0.2
 
 const START_POSITION = Vector2(112.0, -24.0)
 
@@ -30,6 +31,7 @@ var is_attacking = false
 var is_dashing = false # dash
 var is_wall_sliding = false
 var is_drinking = false
+var hase_just_pressed = {"dash" : false, "jump" : false, "attack" : false}
 var has_knockback = false
 
 var coyote_wall_timer = 0.0
@@ -38,6 +40,7 @@ var invulnerable_timer = 0.0
 var dash_timer = 0.0
 var attack_timer = 0.0
 var drink_timer = 0.0
+var buffering_timer = {"dash" : 0.0, "jump" : 0.0, "attack" : 0.0}
 
 var can_dash = true
 var can_double_jump = true
@@ -61,6 +64,7 @@ signal wall_jumped
 
 func _physics_process(delta: float) -> void:
 	coyote(delta)
+	buffering(delta)
 	
 	# GRAVITY
 	if not is_on_floor():
@@ -98,6 +102,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		wall_direction = 0
 		is_wall_sliding = false
+		
 	
 	jump()
 	double_jump()
@@ -132,10 +137,23 @@ func coyote(delta):
 		coyote_wall_timer = COYOTE_WALL_DURATION
 		was_on_wall = true
 	
-	
+
+func buffering(delta):
+	for action in buffering_timer.keys():
+		if Input.is_action_just_pressed(action):
+			buffering_timer[action] = BUFFERING_TIME
+			hase_just_pressed[action] = true
+		
+		if hase_just_pressed[action]:
+			buffering_timer[action] -= delta
+			if buffering_timer[action] <= 0:
+				hase_just_pressed[action] = false
+		
+
 # ---------------- JUMP ----------------
 func jump():
-	if Input.is_action_just_pressed("jump") and not is_dashing and not is_drinking and was_on_floor:
+	if hase_just_pressed["jump"] and not is_dashing and not is_drinking and was_on_floor:
+		hase_just_pressed["jump"] = false
 		velocity.y = JUMP_VELOCITY
 		was_on_floor = false
 		
@@ -143,6 +161,7 @@ func jump():
 # ---------------- DOUBLE JUMP ----------------
 func double_jump():
 	if Input.is_action_just_pressed("jump") and upgrade_level >= 4 and not is_dashing and not is_on_floor() and can_double_jump and not is_wall_sliding:
+		hase_just_pressed["jump"] = false
 		velocity.y = DOUBLE_JUMP_VELOCITY
 		can_double_jump = false
 		
@@ -155,7 +174,8 @@ func double_jump():
 	
 # ---------------- WALL JUMP ----------------
 func wall_jump(delta):
-	if Input.is_action_just_pressed("jump") and is_wall_sliding:
+	if hase_just_pressed["jump"]  and is_wall_sliding:
+		hase_just_pressed["jump"] = false
 		velocity.y = WALL_JUMP_VELOCITY
 		emit_signal("wall_jumped")
 
@@ -167,7 +187,8 @@ func attack(delta):
 	has_knockback = false
 	
 	
-	if Input.is_action_just_pressed("attack") and upgrade_level >= 1 and not is_attacking and not is_drinking:
+	if hase_just_pressed["attack"] and upgrade_level >= 1 and not is_attacking and not is_drinking:
+		hase_just_pressed["attack"] = false
 		is_attacking = true
 		attack_timer = ATTACK_DURATION
 
@@ -221,7 +242,7 @@ func regen(delta):
 
 		is_drinking = true
 		drink_timer = DRINK_DURATION
-
+		
 	
 # ---------------- DASH (FIXED) ----------------
 func dash(delta):
@@ -234,7 +255,8 @@ func dash(delta):
 			velocity.y = 0
 			velocity.x = last_direction * DASH_SPEED
 			
-	if Input.is_action_just_pressed("dash") and upgrade_level >= 2 and not is_dashing and not is_drinking and can_dash:
+	if hase_just_pressed["dash"] and upgrade_level >= 2 and not is_dashing and not is_drinking and can_dash:
+		hase_just_pressed["dash"] = false
 		if not was_on_floor and is_dashing:
 			can_dash = false
 			

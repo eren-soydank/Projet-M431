@@ -21,6 +21,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# mettre le niveau (curent_level)
 	_changeLevel(curent_level)
+	
 	# conecter les signaux de player au fonction
 	player.connect("use_glass", _use_glass)
 	player.connect("death", _death)
@@ -75,17 +76,18 @@ func _changeLevel(level_destination):
 	tp(player.START_POSITION)
 
 func tp(destination):
-	# teleporter le joueur
-	player.global_position = destination
-	# le faire regarder a droite
-	player.last_direction = 1
 	# lui faire finire sont dash
 	player.end_dash()
 	# lui faire finire sont attaque
 	player.end_attack()
+	# teleporter le joueur
+	player.global_position = destination
+	# le faire regarder a droite
+	player.last_direction = 1
 	# lui enlever sont elant
 	player.velocity.x = 0
 	player.velocity.y = 0
+	player.buffering_timer = {"dash" : 0.0, "jump" : 0.0, "attack" : 0.0}
 
 func _pick_up_glass(number):
 	# met a jour le nombre afficher dans l'hud

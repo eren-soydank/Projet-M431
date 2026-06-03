@@ -326,9 +326,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8hujx")
 }],
-"loop": false,
+"loop": true,
 "name": &"drinking",
-"speed": 7.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -424,7 +424,9 @@ script = ExtResource("1_k1be4")
 position = Vector2(0, -5.9604645e-08)
 scale = Vector2(0.71875, 0.75)
 sprite_frames = SubResource("SpriteFrames_r5wlx")
-animation = &"idle"
+animation = &"drinking"
+frame = 6
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166798208]
 position = Vector2(0, 1)
