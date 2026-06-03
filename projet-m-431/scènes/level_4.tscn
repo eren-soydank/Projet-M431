@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bpwa2fv3i2lc6" path="res://scènes/chest.tscn" id="3_dnkgp"]
 [ext_resource type="PackedScene" uid="uid://bwbm6jpcsf63l" path="res://scènes/spike.tscn" id="3_l2bqk"]
 [ext_resource type="PackedScene" uid="uid://bjkdltgimj8nb" path="res://scènes/glass.tscn" id="5_l2bqk"]
-[ext_resource type="PackedScene" uid="uid://dlogbs5dfgamt" path="res://scènes/breakable_floor.tscn" id="7_pwlbb"]
-[ext_resource type="PackedScene" uid="uid://b7aiy0nes52s3" path="res://scènes/breakable_wall.tscn" id="7_tk2uc"]
+[ext_resource type="PackedScene" path="res://scènes/breakable_floor.tscn" id="7_pwlbb"]
+[ext_resource type="PackedScene" path="res://scènes/breakable_wall.tscn" id="7_tk2uc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_na6m6"]
 texture = ExtResource("2_xr02k")
