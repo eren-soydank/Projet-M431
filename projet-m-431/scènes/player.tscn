@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://be682oqy7o4d4" path="res://assets/Knight_player/Walking_KG_1.png" id="6_6f162"]
 [ext_resource type="PackedScene" uid="uid://4cowisp4201s" path="res://scènes/HUD.tscn" id="6_g0ffq"]
 [ext_resource type="Texture2D" uid="uid://cep4qmqinc4sa" path="res://assets/Knight_player/Grab_idle_KG_1.png" id="10_6f162"]
+[ext_resource type="AudioStream" uid="uid://cm3ypki8sbtlg" path="res://sound/attacksfx.mp3" id="11_gvwmi"]
+[ext_resource type="AudioStream" uid="uid://dtot01a0j25q5" path="res://sound/dahssfx.mp3" id="12_dxdnu"]
+[ext_resource type="AudioStream" uid="uid://gkwqomgj02yn" path="res://sound/drinksfx.mp3" id="13_a5441"]
+[ext_resource type="AudioStream" uid="uid://c4kjgmhhm05nj" path="res://sound/eren song.mp3" id="14_uyiaa"]
+[ext_resource type="AudioStream" uid="uid://byrspstj18d62" path="res://sound/jumpsfx.mp3" id="15_tdctf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2ov3"]
 atlas = ExtResource("2_ojynp")
@@ -433,5 +438,22 @@ shape = SubResource("CapsuleShape2D_px5sl")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=768723707]
 zoom = Vector2(1.7, 1.7)
+
+[node name="attacksfx" type="AudioStreamPlayer" parent="." unique_id=707207350]
+stream = ExtResource("11_gvwmi")
+
+[node name="dashsfx" type="AudioStreamPlayer" parent="." unique_id=793137278]
+stream = ExtResource("12_dxdnu")
+
+[node name="drinksfx" type="AudioStreamPlayer" parent="." unique_id=831658858]
+stream = ExtResource("13_a5441")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=29932133]
+stream = ExtResource("14_uyiaa")
+autoplay = true
+
+[node name="jumpsfx" type="AudioStreamPlayer" parent="." unique_id=908787427]
+stream = ExtResource("15_tdctf")
+autoplay = true
 
 [connection signal="ready" from="." to="." method="_on_ready"]

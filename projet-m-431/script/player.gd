@@ -60,6 +60,10 @@ signal double_jump_signal
 signal wall_jumped
 
 @onready var sprite = $AnimatedSprite2D
+@onready var attacksfx: AudioStreamPlayer = $attacksfx
+@onready var dashsfx: AudioStreamPlayer = $dashsfx
+@onready var drinksfx: AudioStreamPlayer = $drinksfx
+@onready var jumpsfx: AudioStreamPlayer = $jumpsfx
 
 
 func _physics_process(delta: float) -> void:
@@ -167,6 +171,7 @@ func double_jump():
 		
 		if sprite.animation == "jump":
 			sprite.play("jump")
+			jumpsfx.play()
 
 		# envoi un signal à main pour faire aparaitre le nuage
 		emit_signal("double_jump_signal")
@@ -286,30 +291,36 @@ func animations(direction):
 	if is_dashing:
 		if sprite.animation != "dash":
 			sprite.play("dash")
+			dashsfx.play()
 		return
 
 	if is_attacking:
 		if attack_hit_box:
 			if attack_hit_box.name == "attack_hit_box_pogo":
 				sprite.play("attack_pogo")
+				attacksfx.play()
 			else:
 				sprite.play("attack")
+				attacksfx.play()
 		return
 		
 	if was_on_wall and upgrade_level >= 3 and not is_on_floor():
 		sprite.flip_h = not sprite.flip_h
 		if sprite.animation != "wall_jump":
 			sprite.play("wall_jump")
+			jumpsfx.play()
 		return
 			
 	if is_drinking:
 		if sprite.animation != "drinking":
 			sprite.play("drinking")
+			drinksfx.play()
 		return
 
 	elif not was_on_floor:
 		if sprite.animation != "jump":
 			sprite.play("jump")
+			jumpsfx.play()
 		return
 
 	if direction != 0:
