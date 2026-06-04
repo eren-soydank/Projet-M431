@@ -33,6 +33,7 @@ var is_wall_sliding = false
 var is_drinking = false
 var hase_just_pressed = {"dash" : false, "jump" : false, "attack" : false}
 var has_knockback = false
+var can_move = true
 
 var coyote_wall_timer = 0.0
 var coyote_floor_timer = 0.0
@@ -58,6 +59,7 @@ signal use_glass
 signal death
 signal double_jump_signal
 signal wall_jumped
+signal level_up
 
 @onready var sprite = $AnimatedSprite2D
 @onready var attacksfx: AudioStreamPlayer = $attacksfx
@@ -115,7 +117,7 @@ func _physics_process(delta: float) -> void:
 	attack(delta)
 	regen(delta)
 	dash(delta)
-
+	
 	move_and_slide()
 
 	couldown_invulnerable(delta)
@@ -156,7 +158,7 @@ func buffering(delta):
 
 # ---------------- JUMP ----------------
 func jump():
-	if hase_just_pressed["jump"] and not is_dashing and not is_drinking and was_on_floor:
+	if hase_just_pressed["jump"] and can_move and not is_dashing and not is_drinking and was_on_floor:
 		hase_just_pressed["jump"] = false
 		velocity.y = JUMP_VELOCITY
 		was_on_floor = false
@@ -164,7 +166,7 @@ func jump():
 		
 # ---------------- DOUBLE JUMP ----------------
 func double_jump():
-	if Input.is_action_just_pressed("jump") and upgrade_level >= 4 and not is_dashing and not is_on_floor() and can_double_jump and not is_wall_sliding:
+	if Input.is_action_just_pressed("jump") and can_move and upgrade_level >= 4 and not is_dashing and not is_on_floor() and can_double_jump and not is_wall_sliding:
 		hase_just_pressed["jump"] = false
 		velocity.y = DOUBLE_JUMP_VELOCITY
 		can_double_jump = false
@@ -179,7 +181,7 @@ func double_jump():
 	
 # ---------------- WALL JUMP ----------------
 func wall_jump(delta):
-	if hase_just_pressed["jump"]  and is_wall_sliding:
+	if hase_just_pressed["jump"] and can_move and is_wall_sliding:
 		hase_just_pressed["jump"] = false
 		velocity.y = WALL_JUMP_VELOCITY
 		emit_signal("wall_jumped")
@@ -192,7 +194,7 @@ func attack(delta):
 	has_knockback = false
 	
 	
-	if hase_just_pressed["attack"] and upgrade_level >= 1 and not is_attacking and not is_drinking:
+	if hase_just_pressed["attack"] and can_move and upgrade_level >= 1 and not is_attacking and not is_drinking:
 		hase_just_pressed["attack"] = false
 		is_attacking = true
 		attack_timer = ATTACK_DURATION
@@ -240,7 +242,7 @@ func regen(delta):
 		if drink_timer <= 0:
 			is_drinking = false
 			
-	if Input.is_action_pressed("regen") and glass_number > 0 and hp < 10 and not is_drinking and not is_attacking and not is_dashing and was_on_floor:
+	if Input.is_action_pressed("regen") and can_move and glass_number > 0 and hp < 10 and not is_drinking and not is_attacking and not is_dashing and was_on_floor:
 		hp += 1
 		glass_number -= 1
 		emit_signal("use_glass")
@@ -260,7 +262,7 @@ func dash(delta):
 			velocity.y = 0
 			velocity.x = last_direction * DASH_SPEED
 			
-	if hase_just_pressed["dash"] and upgrade_level >= 2 and not is_dashing and not is_drinking and can_dash:
+	if hase_just_pressed["dash"] and can_move and upgrade_level >= 2 and not is_dashing and not is_drinking and can_dash:
 		hase_just_pressed["dash"] = false
 		if not was_on_floor and is_dashing:
 			can_dash = false
@@ -287,6 +289,9 @@ func couldown_invulnerable(delta):
 # ---------------- ANIMATIONS ----------------
 func animations(direction):
 	sprite.flip_h = last_direction < 0
+	if not can_move:
+		sprite.play("idle")
+		return
 
 	if is_dashing:
 		if sprite.animation != "dash":
@@ -358,3 +363,7 @@ func _touch(is_pogo):
 		can_double_jump = true
 	else:
 		has_knockback = true
+
+func level_upgrade():
+	upgrade_level += 1
+	emit_signal("level_up")

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://60ku8w0rjink" path="res://assets/Knight_player/Jump_KG_1.png" id="4_ojynp"]
 [ext_resource type="Texture2D" uid="uid://mfsi2htcgyek" path="res://assets/Knight_player/Rolling_KG_1.png" id="5_s4tku"]
 [ext_resource type="Texture2D" uid="uid://be682oqy7o4d4" path="res://assets/Knight_player/Walking_KG_1.png" id="6_6f162"]
-[ext_resource type="PackedScene" uid="uid://4cowisp4201s" path="res://scènes/HUD.tscn" id="6_g0ffq"]
+[ext_resource type="PackedScene" uid="uid://4cowisp4201s" path="res://scènes/hud.tscn" id="6_g0ffq"]
 [ext_resource type="Texture2D" uid="uid://cep4qmqinc4sa" path="res://assets/Knight_player/Grab_idle_KG_1.png" id="10_6f162"]
 [ext_resource type="AudioStream" uid="uid://cm3ypki8sbtlg" path="res://sound/attacksfx.mp3" id="11_gvwmi"]
 [ext_resource type="AudioStream" uid="uid://dtot01a0j25q5" path="res://sound/dahssfx.mp3" id="12_dxdnu"]

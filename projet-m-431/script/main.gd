@@ -22,11 +22,15 @@ func _ready() -> void:
 	# mettre le niveau (curent_level)
 	_changeLevel(curent_level)
 	
+	# conecter les signaux de hud au fonction
+	hud.connect("end_tutorial", _end_tutorial)
+	
 	# conecter les signaux de player au fonction
 	player.connect("use_glass", _use_glass)
 	player.connect("death", _death)
 	player.connect("double_jump_signal", _double_jump)
 	player.connect("wall_jumped", _wall_jumped)
+	player.connect("level_up", _level_up)
 
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
@@ -37,7 +41,10 @@ func _process(delta: float) -> void:
 		
 	# si on appuis sur quit (ESC) on qui le jeu
 	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+		if player.can_move:
+			get_tree().quit()
+		else:
+			hud.disappear_tutorial()
 
 func connect_objet():
 	# pour tous les objet du niveau
@@ -140,6 +147,14 @@ func _double_jump():
 	add_child(double_jump_pad)
 	# le repositionner en fonction de la position du joueur
 	double_jump_pad.global_position = Vector2(player.global_position.x, player.global_position.y + 40)
+
+func _level_up():
+	var skill_name = {1:"attaque", 2:"slide", 3:"wall jump", 4:"double jump"}[player.upgrade_level]
+	hud.appear_tutorial(skill_name)
+	player.can_move = false
+
+func _end_tutorial():
+	player.can_move = true
 
 func _wall_jumped():
 	# optionnel: spawner des particules, jouer un son, etc.

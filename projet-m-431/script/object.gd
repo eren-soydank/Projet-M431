@@ -17,6 +17,6 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# si c'est un joueur
 	if body.name == "player":
-		body.upgrade_level += 1
+		body.level_upgrade()
 		# ce supprime soi même
 		queue_free()

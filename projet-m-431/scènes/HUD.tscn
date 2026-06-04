@@ -1,40 +1,40 @@
 [gd_scene format=3 uid="uid://4cowisp4201s"]
 
-[ext_resource type="Script" uid="uid://b3mb6tcaf8bgq" path="res://script/hud.gd" id="1_863tq"]
-[ext_resource type="Texture2D" uid="uid://d37oj4b7xehiu" path="res://assets/glass/glass_animation.png" id="2_wa3bo"]
-[ext_resource type="Texture2D" uid="uid://dl382yvo6gkpa" path="res://assets/heart/heart_animation.png" id="3_li0qm"]
-[ext_resource type="Texture2D" uid="uid://wqfqblf3sdgc" path="res://assets/background/background.jpg" id="4_2f8ua"]
+[ext_resource type="Script" uid="uid://b3mb6tcaf8bgq" path="res://script/hud.gd" id="1_6lkl0"]
+[ext_resource type="Texture2D" uid="uid://wqfqblf3sdgc" path="res://assets/background/background.jpg" id="2_6r87s"]
+[ext_resource type="Texture2D" uid="uid://d37oj4b7xehiu" path="res://assets/glass/glass_animation.png" id="3_kv20d"]
+[ext_resource type="Texture2D" uid="uid://dl382yvo6gkpa" path="res://assets/heart/heart_animation.png" id="4_jb3dv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2f8ua"]
-atlas = ExtResource("2_wa3bo")
+atlas = ExtResource("3_kv20d")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipve7"]
-atlas = ExtResource("2_wa3bo")
+atlas = ExtResource("3_kv20d")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8dr2a"]
-atlas = ExtResource("2_wa3bo")
+atlas = ExtResource("3_kv20d")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1g7gp"]
-atlas = ExtResource("2_wa3bo")
+atlas = ExtResource("3_kv20d")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plrqd"]
-atlas = ExtResource("2_wa3bo")
+atlas = ExtResource("3_kv20d")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ffh8"]
-atlas = ExtResource("2_wa3bo")
+atlas = ExtResource("3_kv20d")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6vfb"]
-atlas = ExtResource("2_wa3bo")
+atlas = ExtResource("3_kv20d")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpq2w"]
-atlas = ExtResource("2_wa3bo")
+atlas = ExtResource("3_kv20d")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gl1yg"]
@@ -70,35 +70,35 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lkl0"]
-atlas = ExtResource("3_li0qm")
+atlas = ExtResource("4_jb3dv")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6r87s"]
-atlas = ExtResource("3_li0qm")
+atlas = ExtResource("4_jb3dv")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kv20d"]
-atlas = ExtResource("3_li0qm")
+atlas = ExtResource("4_jb3dv")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jb3dv"]
-atlas = ExtResource("3_li0qm")
+atlas = ExtResource("4_jb3dv")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxopg"]
-atlas = ExtResource("3_li0qm")
+atlas = ExtResource("4_jb3dv")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3q2hx"]
-atlas = ExtResource("3_li0qm")
+atlas = ExtResource("4_jb3dv")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3f56"]
-atlas = ExtResource("3_li0qm")
+atlas = ExtResource("4_jb3dv")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3w2om"]
-atlas = ExtResource("3_li0qm")
+atlas = ExtResource("4_jb3dv")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cmgcw"]
@@ -139,12 +139,12 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D" unique_id=1047693899]
-script = ExtResource("1_863tq")
+script = ExtResource("1_6lkl0")
 
 [node name="background0" type="Sprite2D" parent="." unique_id=2052031100]
 z_index = -300
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("4_2f8ua")
+texture = ExtResource("2_6r87s")
 
 [node name="glass0" type="AnimatedSprite2D" parent="." unique_id=186318211]
 position = Vector2(-530, -252)
@@ -166,6 +166,14 @@ offset_top = -320.0
 offset_right = 544.0
 offset_bottom = -297.0
 text = "00:00:00.000"
+
+[node name="tutorial0" type="Label" parent="." unique_id=543107652]
+z_index = 300
+offset_left = -336.0
+offset_top = -344.0
+offset_right = 323.0
+offset_bottom = -35.0
+horizontal_alignment = 1
 
 [node name="heart0" type="AnimatedSprite2D" parent="." unique_id=843922683]
 position = Vector2(-530, -289)
@@ -216,3 +224,8 @@ animation = &"appear"
 position = Vector2(-224, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")
 animation = &"appear"
+
+[node name="timer_tutorial0" type="Timer" parent="." unique_id=646430300]
+wait_time = 20.0
+
+[connection signal="timeout" from="timer_tutorial0" to="." method="_on_timer_tutorial_0_timeout"]
