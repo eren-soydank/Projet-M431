@@ -78,11 +78,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		can_dash = true
 		can_double_jump = true
-	
+
 	var direction := Input.get_axis("move_left", "move_right")
 	
 	# on met a jour la direction que si il peut bouger
-	if direction != 0 and not is_dashing and not is_drinking  and can_move:
+	if direction != 0 and not is_dashing and not is_drinking:
 		last_direction = direction
 		# le faire bouger
 		velocity.x = direction * SPEED
