@@ -16,7 +16,7 @@ const DRINK_DURATION = 0.3
 const INVULNERABLE_DURATION = 1.0
 const COYOTE_FLOOR_DURATION = 0.1
 const COYOTE_WALL_DURATION = 0.1
-const BUFFERING_TIME = 0.2
+const BUFFERING_TIME = 0.1
 
 const START_POSITION = Vector2(112.0, -24.0)
 
@@ -296,7 +296,7 @@ func animations(direction):
 				sprite.play("attack")
 		return
 		
-	if was_on_wall and upgrade_level >= 3:
+	if was_on_wall and upgrade_level >= 3 and not is_on_wall():
 		sprite.flip_h = not sprite.flip_h
 		if sprite.animation != "wall_jump":
 			sprite.play("wall_jump")
