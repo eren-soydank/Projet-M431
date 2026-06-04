@@ -160,6 +160,13 @@ offset_bottom = -243.0
 text = "x0"
 metadata/_edit_use_anchors_ = true
 
+[node name="timer0" type="Label" parent="." unique_id=366470334]
+offset_left = 448.0
+offset_top = -320.0
+offset_right = 544.0
+offset_bottom = -297.0
+text = "00:00:00.000"
+
 [node name="heart0" type="AnimatedSprite2D" parent="." unique_id=843922683]
 position = Vector2(-530, -289)
 sprite_frames = SubResource("SpriteFrames_cmgcw")

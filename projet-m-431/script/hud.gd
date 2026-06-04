@@ -7,6 +7,12 @@ extends Node2D
 # on recupere le text
 @onready var label = $Label0
 @onready var background = $background0
+@onready var timer = $timer0
+var time = 0.0
+var hour = "00"
+var minute = "00"
+var second = "00"
+var hundredth = "00"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: 
@@ -20,6 +26,8 @@ func _ready() -> void:
 	glass.global_position.y -= int((DisplayServer.screen_get_size().y -1080) /4)
 	label.global_position.x -= int((DisplayServer.screen_get_size().x -1920) /4)
 	label.global_position.y -= int((DisplayServer.screen_get_size().y -1080) /4)
+	timer.global_position.x += int((DisplayServer.screen_get_size().x -1920) /4)
+	timer.global_position.y -= int((DisplayServer.screen_get_size().y -1080) /4)
 	# pour tous les coeur 
 	for heart in hearts:
 		# lance l'animation d'apparaitre
@@ -30,7 +38,22 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	pass
+	time += delta
+	
+	var hour = str(int(time/3600))
+	if len(hour) < 2:
+		hour = "0" + hour
+	var minute = str(int(time/60) % 60)
+	if len(minute) < 2:
+		minute = "0" + minute
+	var second = str(int(time) % 60)
+	if len(second) < 2:
+		second = "0" + second
+	var hundredth = str(int(time * 100) % 100)
+	if len(hundredth) < 2:
+		hundredth = "0" + hundredth
+	
+	timer.text = "%s:%s:%s.%s" % [hour, minute, second, hundredth]
 	
 func update_glass(glass_number):
 	# met a jour le nombre de potions afficher
