@@ -23,3 +23,6 @@ Parchemins : débloque des habiletés (dash, saut mural, double saut)
 
 ## Idées d'améliorations
 - pnj avec quêtes -> niveaux spéciaux
+
+## Musique et effets
+Son de fond fait par Eren et Ian, effets sonores trouvés sur Pixabay.com.
