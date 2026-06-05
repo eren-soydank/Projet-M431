@@ -4,13 +4,13 @@ extends Node2D
 const MESSAGES = {
 	"attaque" : "Attaque\n\n\nVous avez découvert la capacité d'attaquer avec une épée.\n\nPour l'utiliser, appuyez sur le clic gauche.\nVous pouvez frapper devant vous pour détruire les obstacles qui vous bloquent le passage.\n\nVous pouvez également cliquer en appuyant sur la flèche du bas ou sur S.\nCela permet de frapper vers le bas.\nVous pouvez aussi rebondir sur les obstacles.",
 
-	"slide" : "Dash\n\n\nVous avez appris la capacité de dash.\n\nElle vous permet de vous élancer pour gagner de la vitesse.\n\n\nVous ne pouvez effectuer qu'un seul dash en l'air.\n\nSi vous avez commencé le dash depuis une surface, vous pouvez en effectuer un second.\n\n\nDurant le dash, vous ne perdez pas de hauteur.\nVous pouvez réutiliser votre dash après avoir rebondi sur un obstacle.",
+	"slide" : "Dash\n\n\nVous avez appris la capacité de dash.\n\nElle vous permet de vous élancer pour gagner de la vitesse.\n\nPour l'utiliser, appuyez sur le SHIFT.\n\n\nVous ne pouvez effectuer qu'un seul dash en l'air.\n\nSi vous avez commencé le dash depuis une surface, vous pouvez en effectuer un second.\n\n\nDurant le dash, vous ne perdez pas de hauteur.\nVous pouvez réutiliser votre dash après avoir rebondi sur un obstacle.",
 
 	"wall jump" : "Wall Jump\n\n\nVous avez appris la capacité de saut mural.\n\nLorsque vous êtes contre un mur, sautez pour prendre appui dessus.\n\nVous glisser sur le mur\n\nEnchaînez plusieurs sauts muraux pour grimper le long d'une paroi.\n\n\nLe saut mural redonne le dash\nVous pouvez de nouveux dash si vous avez dash une première fois depuis un mur",
 
 	"double jump" : "Double Jump\n\n\nVous avez appris la capacité de double saut.\n\nAprès avoir sauté une première fois, vous pouvez effectuer un second saut en l'air.\n\nCette capacité permet d'atteindre des zones plus élevées\n\nLe double saut se recharge lorsque vous touchez le sol\nvous rebondissiez sur un obstacle\nvous fait un wall jump",
 	
-	"end" : "Félicitations !\n\nVous êtes arrivé au bout de votre aventure.\n\nAu fil de votre progression, vous avez appris à maîtriser de nouvelles capacités, à surmonter les obstacles et à explorer chaque recoin du monde.\n\nMerci d'avoir joué.\n\nTemps de jeu : \n"
+	"end" : "Félicitations !\n\nVous êtes arrivé au bout de votre aventure.\n\nAu fil de votre progression, vous avez appris à maîtriser de nouvelles capacités, à surmonter les obstacles et à explorer chaque recoin du monde.\n\nVous pouvez maintenant recommancer depuis le niveau 1 mais avec toutes vos compétances\n\nMerci d'avoir joué.\n\nTemps de jeu : \n"
 }
 
 # on recupere les node enfant

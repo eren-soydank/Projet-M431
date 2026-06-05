@@ -3,7 +3,7 @@ extends Node2D
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
 # le niveau actuel
-var curent_level = 6
+var curent_level = 1
 
 # le joueur
 @onready var player = $player
@@ -14,8 +14,6 @@ var curent_level = 6
 
 # La fonction qui ce fait une foi au debut du jeu
 func _ready() -> void:
-	# cette ligne sert uniquemment a tester n'importe quelle niveau sans avoir des problèmes avec les capacitées de déplacement
-	player.upgrade_level = max(curent_level - 3, 0)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# mettre le niveau (curent_level)
