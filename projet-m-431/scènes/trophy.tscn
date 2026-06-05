@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cukfkilhc46ui"]
+
+[ext_resource type="Script" uid="uid://ut2o6rq7046" path="res://script/object.gd" id="1_u42ij"]
+[ext_resource type="Texture2D" uid="uid://byj778boyihd2" path="res://assets/trophy.png" id="2_sll10"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcj15"]
+size = Vector2(32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u42ij"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sll10")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="trophy" type="Area2D" unique_id=1884079917]
+rotation = -0.0018247234
+script = ExtResource("1_u42ij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=291485315]
+shape = SubResource("RectangleShape2D_dcj15")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1543853227]
+position = Vector2(-0.013387464, 0.0060512424)
+scale = Vector2(0.006397277, 0.0064541516)
+sprite_frames = SubResource("SpriteFrames_u42ij")
+animation = &"idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
