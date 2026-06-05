@@ -3,7 +3,7 @@ extends Node2D
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
 # le niveau actuel
-var curent_level = 1
+var curent_level = 8
 
 # le joueur
 @onready var player = $player
@@ -33,7 +33,7 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	# si le joueur tomb trop on lui fait prendre un degat
-	if player.global_position.y >= 500:
+	if player.global_position.y >= 1000:
 		_take_damage(1)
 		
 	# si on appuis sur quit (ESC) on qui le jeu
