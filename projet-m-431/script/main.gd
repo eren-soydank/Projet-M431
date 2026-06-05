@@ -3,7 +3,7 @@ extends Node2D
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
 # le niveau actuel
-var curent_level = 8
+var curent_level = 1
 
 # le joueur
 @onready var player = $player
@@ -14,34 +14,29 @@ var curent_level = 8
 
 # La fonction qui ce fait une foi au debut du jeu
 func _ready() -> void:
+	# cette ligne sert uniquemment a tester n'importe quelle niveau sans avoir des problèmes avec les capacitées de déplacement
+	player.upgrade_level = max(curent_level - 3, 0)
+	# player.upgrade_level = 4
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# mettre le niveau (curent_level)
 	_changeLevel(curent_level)
-	
-	# conecter les signaux de hud au fonction
-	hud.connect("end_tutorial", _end_tutorial)
-	
 	# conecter les signaux de player au fonction
 	player.connect("use_glass", _use_glass)
 	player.connect("death", _death)
 	player.connect("double_jump_signal", _double_jump)
 	player.connect("wall_jumped", _wall_jumped)
-	player.connect("level_up", _level_up)
 
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	# si le joueur tomb trop on lui fait prendre un degat
-	if player.global_position.y >= 1000:
+	if player.global_position.y >= 500:
 		_take_damage(1)
 		
 	# si on appuis sur quit (ESC) on qui le jeu
 	if Input.is_action_just_pressed("quit"):
-		if player.can_move:
-			get_tree().quit()
-		else:
-			hud.disappear_tutorial()
+		get_tree().quit()
 
 func connect_objet():
 	# pour tous les objet du niveau
@@ -61,7 +56,6 @@ func connect_objet():
 
 # la fonction pour changer de niveau
 func _changeLevel(level_destination):
-	hud.is_timer_on = true
 	#suprimer la scene du niveau qu'on quitte
 	if curent_scene_level != null:
 		remove_child(curent_scene_level)
@@ -81,18 +75,17 @@ func _changeLevel(level_destination):
 	tp(player.START_POSITION)
 
 func tp(destination):
-	# lui faire finire sont dash
-	player.end_dash()
-	# lui faire finire sont attaque
-	player.end_attack()
 	# teleporter le joueur
 	player.global_position = destination
 	# le faire regarder a droite
 	player.last_direction = 1
+	# lui faire finire sont dash
+	player.end_dash()
+	# lui faire finire sont attaque
+	player.end_attack()
 	# lui enlever sont elant
 	player.velocity.x = 0
 	player.velocity.y = 0
-	player.buffering_timer = {"dash" : 0.0, "jump" : 0.0, "attack" : 0.0}
 
 func _pick_up_glass(number):
 	# met a jour le nombre afficher dans l'hud
@@ -145,20 +138,6 @@ func _double_jump():
 	add_child(double_jump_pad)
 	# le repositionner en fonction de la position du joueur
 	double_jump_pad.global_position = Vector2(player.global_position.x, player.global_position.y + 40)
-
-func _level_up():
-	
-	var skill_name 
-	if player.upgrade_level > 4:
-		skill_name = "end"
-	else:
-		skill_name = {1:"attaque", 2:"slide", 3:"wall jump", 4:"double jump"}[player.upgrade_level]
-		
-	hud.appear_tutorial(skill_name)
-	player.can_move = false
-
-func _end_tutorial():
-	player.can_move = true
 
 func _wall_jumped():
 	# optionnel: spawner des particules, jouer un son, etc.
