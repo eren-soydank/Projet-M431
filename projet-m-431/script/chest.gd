@@ -36,6 +36,7 @@ func _on_body_exited(body: Node2D) -> void:
 	if body.name == "player":
 		is_player_in = false
 
+# ------------------------- l'ouverture ----------------------------
 func oppen():
 	if not is_oppened:
 		# lance l'animation d'ouverture de la valeur corespondante

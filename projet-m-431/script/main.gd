@@ -3,7 +3,7 @@ extends Node2D
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
 
 # le niveau actuel
-var curent_level = 3
+var curent_level = 6
 
 # le joueur
 @onready var player = $player
@@ -16,7 +16,6 @@ var curent_level = 3
 func _ready() -> void:
 	# cette ligne sert uniquemment a tester n'importe quelle niveau sans avoir des problèmes avec les capacitées de déplacement
 	player.upgrade_level = max(curent_level - 3, 0)
-	# player.upgrade_level = 4
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# mettre le niveau (curent_level)
@@ -64,6 +63,7 @@ func connect_objet():
 
 # la fonction pour changer de niveau
 func _changeLevel(level_destination):
+	hud.is_timer_on = true
 	#suprimer la scene du niveau qu'on quitte
 	if curent_scene_level != null:
 		remove_child(curent_scene_level)
@@ -149,7 +149,13 @@ func _double_jump():
 	double_jump_pad.global_position = Vector2(player.global_position.x, player.global_position.y + 40)
 
 func _level_up():
-	var skill_name = {1:"attaque", 2:"slide", 3:"wall jump", 4:"double jump"}[player.upgrade_level]
+	
+	var skill_name 
+	if player.upgrade_level > 4:
+		skill_name = "end"
+	else:
+		skill_name = {1:"attaque", 2:"slide", 3:"wall jump", 4:"double jump"}[player.upgrade_level]
+		
 	hud.appear_tutorial(skill_name)
 	player.can_move = false
 

@@ -61,6 +61,7 @@ signal double_jump_signal
 signal wall_jumped
 signal level_up
 
+# les nodes enfant et son
 @onready var sprite = $AnimatedSprite2D
 @onready var attacksfx: AudioStreamPlayer = $attacksfx
 @onready var dashsfx: AudioStreamPlayer = $dashsfx
@@ -69,6 +70,7 @@ signal level_up
 
 
 func _physics_process(delta: float) -> void:
+	# on le met ici car les autres fonction ce base sur ces valeur
 	coyote(delta)
 	buffering(delta)
 	
@@ -78,10 +80,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		can_dash = true
 		can_double_jump = true
-	
 	var direction := Input.get_axis("move_left", "move_right")
 	
-	# on met a jour la direction que si il peut bouger
+	
+	# ======= Direction ======
 	if direction != 0 and not is_dashing and not is_drinking  and can_move:
 		last_direction = direction
 		# le faire bouger
@@ -96,6 +98,7 @@ func _physics_process(delta: float) -> void:
 		# wall_direction est la direction du mur que l'on touche actiellement actuel 1 pour droite, -1 pour gauche 0 pour auqu'un mur
 		wall_direction = -sign(get_wall_normal().x)
 
+		# faire glisser le joueur
 		if upgrade_level >= 3 and not is_dashing and not was_on_floor:
 			is_wall_sliding = true
 			last_direction = -wall_direction
@@ -109,9 +112,9 @@ func _physics_process(delta: float) -> void:
 		wall_direction = 0
 		is_wall_sliding = false
 		
-	
-	jump()
+	# ========= Input utilisateur ===========
 	double_jump()
+	jump()
 	wall_jump(delta)
 
 	attack(delta)
@@ -124,6 +127,7 @@ func _physics_process(delta: float) -> void:
 	animations(direction)
 	
 	
+# ======== temp après avoir quitter une surface durant lequelle le joueur peut encor sauter ======
 func coyote(delta):
 	if was_on_floor:
 		coyote_floor_timer -= delta
@@ -143,7 +147,7 @@ func coyote(delta):
 		coyote_wall_timer = COYOTE_WALL_DURATION
 		was_on_wall = true
 	
-
+# ====== permet de faire une action quand meme si le joueur l'a faitun peu avant qu'elle soit disponible =======
 func buffering(delta):
 	for action in buffering_timer.keys():
 		if Input.is_action_just_pressed(action):
@@ -166,7 +170,7 @@ func jump():
 		
 # ---------------- DOUBLE JUMP ----------------
 func double_jump():
-	if Input.is_action_just_pressed("jump") and can_move and upgrade_level >= 4 and not is_dashing and not is_on_floor() and can_double_jump and not is_wall_sliding:
+	if Input.is_action_just_pressed("jump") and can_move and upgrade_level >= 4 and not is_dashing and not is_on_floor() and not was_on_floor and can_double_jump and not is_wall_sliding:
 		hase_just_pressed["jump"] = false
 		velocity.y = DOUBLE_JUMP_VELOCITY
 		can_double_jump = false
@@ -273,7 +277,7 @@ func dash(delta):
 		if not was_on_floor and wall_direction == 0:
 			can_dash = false
 	
-	  
+	
 func end_dash():
 	is_dashing = false
 
@@ -287,6 +291,7 @@ func couldown_invulnerable(delta):
 
 
 # ---------------- ANIMATIONS ----------------
+# priorité : dash, attaque, wall slide, regénérer, marcher, sauter/tomber
 func animations(direction):
 	sprite.flip_h = last_direction < 0
 	if not can_move:
@@ -309,7 +314,7 @@ func animations(direction):
 				attacksfx.play()
 		return
 		
-	if was_on_wall and upgrade_level >= 3 and not is_on_floor():
+	if is_wall_sliding:
 		sprite.flip_h = not sprite.flip_h
 		if sprite.animation != "wall_jump":
 			sprite.play("wall_jump")
@@ -347,7 +352,7 @@ func prendre_dega(number):
 		is_invulnerable = true
 		invulnerable_timer = INVULNERABLE_DURATION
 
-
+# ---------------- MORT ----------------
 func dead():
 	hp = 10
 	glass_number = 0
@@ -364,6 +369,7 @@ func _touch(is_pogo):
 	else:
 		has_knockback = true
 
+# ---------------- gagner un niveau ----------------
 func level_upgrade():
 	upgrade_level += 1
 	emit_signal("level_up")

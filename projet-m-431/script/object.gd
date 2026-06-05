@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# si c'est un joueur
 	if body.name == "player":
-		body.level_upgrade()
-		# ce supprime soi même
+		if self.name.begins_with("trophy") or body.upgrade_level < 4:
+			body.level_upgrade()
+			# ce supprime soi même
 		queue_free()
