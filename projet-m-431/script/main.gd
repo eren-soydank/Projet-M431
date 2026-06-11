@@ -1,6 +1,7 @@
 extends Node2D
 
 const DOUBLE_JUMP_PAD_SCENE = preload("res://scènes/double_jump_pad.tscn")
+const name_by_level = {3 : "attaque", 4 : "slide", 5 : "wall jump", 6 : "double jump", 7 : "end"}
 
 # le niveau actuel
 var curent_level = 1
@@ -22,21 +23,27 @@ func _ready() -> void:
 	# mettre le niveau (curent_level)
 	_changeLevel(curent_level)
 	# conecter les signaux de player au fonction
+	hud.connect("end_tutorial", _end_tutorial)
 	player.connect("use_glass", _use_glass)
 	player.connect("death", _death)
 	player.connect("double_jump_signal", _double_jump)
 	player.connect("wall_jumped", _wall_jumped)
+	player.connect("level_up", _level_up)
 
 # Fonction qui c'exécute a chaques frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	# si le joueur tomb trop on lui fait prendre un degat
-	if player.global_position.y >= 500:
+	if player.global_position.y >= 1000:
 		_take_damage(1)
 		
 	# si on appuis sur quit (ESC) on qui le jeu
 	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+		if player.can_move:
+			get_tree().quit()
+		else:
+			hud.disappear_tutorial()
+			_end_tutorial()
 
 func connect_objet():
 	# pour tous les objet du niveau
@@ -56,6 +63,8 @@ func connect_objet():
 
 # la fonction pour changer de niveau
 func _changeLevel(level_destination):
+	if level_destination == 1:
+		hud.is_timer_on = true
 	#suprimer la scene du niveau qu'on quitte
 	if curent_scene_level != null:
 		remove_child(curent_scene_level)
@@ -142,3 +151,11 @@ func _double_jump():
 func _wall_jumped():
 	# optionnel: spawner des particules, jouer un son, etc.
 	pass
+
+func _level_up():
+	hud.appear_tutorial(name_by_level[curent_level])
+	player.can_move = false
+
+func _end_tutorial():
+	player.can_move = true
+	
